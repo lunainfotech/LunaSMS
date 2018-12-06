@@ -1,0 +1,14 @@
+include 'admission-app'
+include 'login-app'
+include 'student-app'
+include 'teacher-app'
+include 'attendance-app'
+include 'asset-app'
+include 'event-app'
+include 'report-app'
+include 'user-app'
+
+include 'commons-library'
+include 'test-module'
+
+rootProject.name = 'LunaSMS'
