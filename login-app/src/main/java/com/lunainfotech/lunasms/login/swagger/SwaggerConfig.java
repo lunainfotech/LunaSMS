@@ -1,4 +1,4 @@
-package com.lunainfotech.lunasms.admission.swagger;
+package com.lunainfotech.lunasms.login.swagger;
 
 import java.util.Arrays;
 import java.util.HashSet;
