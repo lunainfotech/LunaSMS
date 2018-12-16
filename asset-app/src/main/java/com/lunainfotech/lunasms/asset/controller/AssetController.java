@@ -1,11 +1,12 @@
 package com.lunainfotech.lunasms.asset.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lunainfotech.lunasms.commons.entities.Admission;
+//import com.lunainfotech.lunasms.commons.entities.Admission;
 
 
 
@@ -16,8 +17,8 @@ public class AssetController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/asset")
-    public Admission admission(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Admission(counter.incrementAndGet(),
-                            String.format(template, name));
+    public String admission(@RequestParam(value="name", defaultValue="World") String name) {
+        return "hello asset module";
     }
+    
 }
