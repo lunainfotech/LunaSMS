@@ -45,40 +45,26 @@ public class AttendanceController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
-	 private boolean isServerUp() {
-	        boolean isUp = false;
-	        try {
-	            Socket socket = new Socket(mysqlUrl, mysqlPort);
-	            // Server is up
-	            isUp = true;
-	            socket.close();
-	        }
-	        catch (IOException e)
-	        {
-	            // Server is down
-	        }
-	        return isUp;
-	    }
 
 	@RequestMapping(value = "/attendance/heartbeat", method = RequestMethod.GET)
 	@ApiResponses(value = {
 		      @ApiResponse(code = 400, message = "Something went wrong"), 
 		      @ApiResponse(code = 403, message = "Access denied"), 
 		      @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    public Map<String, String> heartbeat() {
-    	HashMap<String, String> map = new HashMap<>();
+	public Map<String, String> heartbeat() {
+		HashMap<String, String> map = new HashMap<>();
 
-    	if(isServerUp()) {
-    		map.put("status", "ok");
-    		map.put("message","Database server is up and running");
-    	}
-    	else {
-    	    map.put("status", "not_ok");
-    	    map.put("reason", "Database is down");
-    	}
-    	return map;   
-    }
+		try {
+			Socket socket = new Socket(mysqlUrl, mysqlPort);
+			socket.close();
+			map.put("status", "ok");
+			map.put("message", "Database server is up and running");
+		} catch (IOException e) {
+			map.put("status", "not_ok");
+			map.put("reason", "Database is down");
+		}
+		return map;
+	}
 	
 	@RequestMapping(value = "/attendance/getStudentsRecord", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
