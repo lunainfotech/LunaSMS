@@ -35,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/users/signup").permitAll()
         .antMatchers("/users/heartbeat").permitAll()
         .antMatchers("/users/logout").permitAll()
+        .antMatchers("/users/me").permitAll()
+
         .anyRequest().authenticated()
         .and()
         .formLogin().loginPage("/users/signin/*").failureUrl("/users/signin?error").permitAll()
@@ -48,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
 
     // Optional, if you want to test the API from a browser
-    // http.httpBasic();
+     //http.httpBasic();
   }
 
   @Override
@@ -72,5 +74,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public AuthenticationManager authenticationManagerBean() throws Exception {
       return super.authenticationManagerBean();
   }
-
+  
 }
