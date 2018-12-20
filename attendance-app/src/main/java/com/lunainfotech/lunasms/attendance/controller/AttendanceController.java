@@ -66,7 +66,7 @@ public class AttendanceController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/attendance/getStudentsRecord", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "/attendance/students/record", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') "
 			+ "or hasRole('ROLE_ADMIN') "
@@ -84,7 +84,7 @@ public class AttendanceController {
     }
 	
 	
-	@RequestMapping(value = "/attendance/createStudentsAttendanceRecord", method = RequestMethod.POST)
+	@RequestMapping(value = "/attendance/students/attendance/record", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') "
 			+ "or hasRole('ROLE_ADMIN') "
 			+ "or hasRole('ROLE_SCHOOL') "
@@ -113,7 +113,7 @@ public class AttendanceController {
 		}
     }
 	
-	@RequestMapping(value = "/attendance/getStudentsAttendanceRecord", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "/attendance/students/attendance/record", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') "
 			+ "or hasRole('ROLE_ADMIN') "
@@ -133,7 +133,7 @@ public class AttendanceController {
 		return parseToJsonString(studentsAttendance);
     }
 	
-	@RequestMapping(value = "/attendance/getStudentAttendanceRecord", method = RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "/attendance/student/attendance/record", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') "
 			+ "or hasRole('ROLE_ADMIN') "
