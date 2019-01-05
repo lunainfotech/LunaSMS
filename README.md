@@ -1,4 +1,4 @@
-# LunaSMS
+#  AP SMS
 
 ## Steps to build the projects
 ```
