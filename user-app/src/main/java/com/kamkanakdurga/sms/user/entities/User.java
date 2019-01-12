@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name = "ap_user")
 public class User {
 
   @Id
@@ -29,7 +29,7 @@ public class User {
   private String password;
 
   @ElementCollection(fetch = FetchType.EAGER)
-  List<Role> roles;
+  List<Role> role;
 
   public Integer getId() {
     return id;
@@ -63,12 +63,12 @@ public class User {
     this.password = password;
   }
 
-  public List<Role> getRoles() {
-    return roles;
+  public List<Role> getRole() {
+    return role;
   }
 
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
+  public void setRole(List<Role> role) {
+    this.role = role;
   }
 
 }

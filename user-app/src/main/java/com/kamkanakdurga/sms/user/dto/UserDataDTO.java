@@ -13,7 +13,7 @@ public class UserDataDTO {
   @ApiModelProperty(position = 1)
   private String email;
   @ApiModelProperty(position = 2)
-  List<Role> roles;
+  List<Role> role;
 
   public String getUsername() {
     return username;
@@ -31,12 +31,12 @@ public class UserDataDTO {
     this.email = email;
   }
 
-  public List<Role> getRoles() {
-    return roles;
+  public List<Role> getRole() {
+    return role;
   }
 
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
+  public void setRole(List<Role> role) {
+    this.role = role;
   }
 
 }

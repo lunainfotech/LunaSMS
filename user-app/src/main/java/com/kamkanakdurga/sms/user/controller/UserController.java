@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kamkanakdurga.sms.user.dto.UserDetailsDTO;
 import com.kamkanakdurga.sms.user.dto.UserResponseDTO;
+import com.kamkanakdurga.sms.user.entities.Role;
 import com.kamkanakdurga.sms.user.entities.User;
+import com.kamkanakdurga.sms.user.service.MenuService;
 import com.kamkanakdurga.sms.user.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -39,6 +41,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MenuService menuService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -107,20 +112,26 @@ public class UserController {
 	public UserResponseDTO search(@ApiParam("Username") @PathVariable String username) {
 		return modelMapper.map(userService.search(username), UserResponseDTO.class);
 	}
-
+	
 	@GetMapping(value = "/me")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
 			+ "or hasRole('ROLE_PARENT') " + "or hasRole('ROLE_MEO') " + "or hasRole('ROLE_DEO') "
 			+ "or hasRole('ROLE_GOVT') ")
-	@ApiOperation(value = "${UserController.me}", response = UserResponseDTO.class)
+	@ApiOperation(value = "Geting menu details of user", response = UserDetailsDTO.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public UserResponseDTO whoami(HttpServletRequest req) {
-		return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
+	public UserDetailsDTO getMenuDetails(HttpServletRequest req) {
+		User user = userService.whoami(req);
+		int roleId = Role.valueOf(user.getRole().get(0).toString()).ordinal();
+		UserDetailsDTO userDetails = new UserDetailsDTO();
+		userDetails.setMenuDetails(menuService.getMenuInfo(roleId, 0));
+		UserResponseDTO userResponseDTO = modelMapper.map(user, UserResponseDTO.class);
+		userDetails.setUser(userResponseDTO);
+		return modelMapper.map(userDetails, UserDetailsDTO.class);
 	}
 
 }

@@ -15,7 +15,7 @@ public class UserResponseDTO {
   @ApiModelProperty(position = 2)
   private String email;
   @ApiModelProperty(position = 3)
-  List<Role> roles;
+  List<Role> role;
 
   public Integer getId() {
     return id;
@@ -41,12 +41,12 @@ public class UserResponseDTO {
     this.email = email;
   }
 
-  public List<Role> getRoles() {
-    return roles;
+  public List<Role> getRole() {
+    return role;
   }
 
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
+  public void setRole(List<Role> role) {
+    this.role = role;
   }
 
 }
