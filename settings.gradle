@@ -1,5 +1,4 @@
 include 'admission-app'
-include 'login-app'
 include 'student-app'
 include 'teacher-app'
 include 'attendance-app'
