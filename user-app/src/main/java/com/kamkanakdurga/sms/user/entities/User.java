@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import com.kamkanakdurga.sms.user.entities.Role;
+
 @Entity(name = "ap_user")
 public class User {
 

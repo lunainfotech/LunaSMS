@@ -5,6 +5,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.kamkanakdurga.sms.user.security.JwtTokenFilter;
+import com.kamkanakdurga.sms.user.security.JwtTokenProvider;
+
 public class JwtTokenFilterConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
   private JwtTokenProvider jwtTokenProvider;

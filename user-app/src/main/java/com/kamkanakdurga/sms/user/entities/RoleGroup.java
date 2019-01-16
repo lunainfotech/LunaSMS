@@ -21,6 +21,9 @@ public class RoleGroup {
 
 	@Column(name = "menu_group_id", nullable = false)
 	private int menuGroupId;
+	
+	@Column(name = "menu", nullable = true)
+	private int menu;
 
 	@Column(name = "deleted", nullable = false)
 	private int deleted;
@@ -50,6 +53,14 @@ public class RoleGroup {
 
 	public void setMenuGroupId(int menuGroupId) {
 		this.menuGroupId = menuGroupId;
+	}
+
+	public int getMenu() {
+		return menu;
+	}
+
+	public void setMenu(int menu) {
+		this.menu = menu;
 	}
 
 	public int getDeleted() {

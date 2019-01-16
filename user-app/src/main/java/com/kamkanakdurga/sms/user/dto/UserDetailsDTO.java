@@ -2,8 +2,6 @@ package com.kamkanakdurga.sms.user.dto;
 
 import java.util.List;
 
-import com.kamkanakdurga.sms.user.entities.User;
-
 import io.swagger.annotations.ApiModelProperty;
 
 public class UserDetailsDTO {

@@ -10,31 +10,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ap_menu")
 public class Menu {
-	
-	@Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private Integer id;
-	
-	  @Column(name = "name", unique = true, nullable = false)
-	  private String name;
-	  
-	  @Column(name = "description", unique = true, nullable = false)
-	  private String description;
-	  
-	  @Column(name = "sequence", nullable = false)
-	  private int sequence;
-	  
-	  @Column(name = "deleted", nullable = false)
-	  private int deleted;
-	  
-	  @Column(name = "in_active", nullable = false)
-	  private int InActive;
 
-	  @Column(name = "url", unique = true, nullable = false)
-	  private String url;
-	
-	  @Column(name = "group_id", nullable = false)
-	  private int groupId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(name = "name", unique = true, nullable = false)
+	private String name;
+
+	@Column(name = "description", unique = true, nullable = false)
+	private String description;
+
+	@Column(name = "sequence", nullable = false)
+	private int sequence;
+
+	@Column(name = "deleted", nullable = false)
+	private int deleted;
+
+	@Column(name = "in_active", nullable = false)
+	private int InActive;
+
+	@Column(name = "url", unique = true, nullable = false)
+	private String url;
+
+	@Column(name = "group_id", nullable = false)
+	private int groupId;
 
 	public Integer getId() {
 		return id;

@@ -84,7 +84,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public String signup(@ApiParam("Signup User") @RequestBody User user) {
 		return userService.signup(modelMapper.map(user, User.class));
-	}
+	}	
 
 	@DeleteMapping(value = "/{username}")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
@@ -128,7 +128,7 @@ public class UserController {
 		User user = userService.whoami(req);
 		int roleId = Role.valueOf(user.getRole().get(0).toString()).ordinal();
 		UserDetailsDTO userDetails = new UserDetailsDTO();
-		userDetails.setMenuDetails(menuService.getMenuInfo(roleId, 0));
+		userDetails.setMenuDetails(menuService.getMenuInfo(roleId));
 		UserResponseDTO userResponseDTO = modelMapper.map(user, UserResponseDTO.class);
 		userDetails.setUser(userResponseDTO);
 		return modelMapper.map(userDetails, UserDetailsDTO.class);

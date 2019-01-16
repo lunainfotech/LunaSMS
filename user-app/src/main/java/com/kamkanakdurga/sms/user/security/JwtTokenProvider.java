@@ -15,11 +15,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.kamkanakdurga.sms.user.entities.Role;
 import com.kamkanakdurga.sms.user.exception.CustomException;
+import com.kamkanakdurga.sms.user.security.MyUserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -67,7 +69,7 @@ public class JwtTokenProvider {
     UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));
     return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
   }
-
+  
   public String getUsername(String token) {
     return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
   }
