@@ -6,9 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kamkanakdurga.sms.attendance.dto.StudentAttendanceRecordDTO;
-import com.kamkanakdurga.sms.attendance.entities.StudentAttendanceInfo;
+import com.kamkanakdurga.sms.attendance.entities.StudentAttendance;
 import com.kamkanakdurga.sms.attendance.entities.StudentInfo;
+import com.kamkanakdurga.sms.attendance.entities.SchoolClass;
+import com.kamkanakdurga.sms.attendance.entities.SchoolSection;
+import com.kamkanakdurga.sms.attendance.repository.SchoolClassRepository;
+import com.kamkanakdurga.sms.attendance.repository.SchoolSectionRepository;
 import com.kamkanakdurga.sms.attendance.repository.StudentAttendanceRepository;
 import com.kamkanakdurga.sms.attendance.repository.StudentRepository;
 
@@ -16,30 +19,41 @@ import com.kamkanakdurga.sms.attendance.repository.StudentRepository;
 public class AttendanceService {
 
 	@Autowired
-	private StudentRepository studentRepository;
-	
-	@Autowired
 	private StudentAttendanceRepository studentAttendanceRepository;
 	
-	public StudentAttendanceInfo saveStudentsAttendanceInfo(StudentAttendanceInfo studentAttendanceInfo) {
-		return studentAttendanceRepository.save(studentAttendanceInfo);
-	}
+	@Autowired
+	private SchoolClassRepository schoolClassRepository;
 	
-	public List<StudentAttendanceRecordDTO> findStudentsAttendanceRecord(BigInteger schoolCode,int classNo, String section) {
-		List<StudentAttendanceRecordDTO> result = studentAttendanceRepository.findBySchoolCodeAndClassNoAndSection(schoolCode, classNo, section);
-		return result;
-	}
+	@Autowired
+	private SchoolSectionRepository schoolSectionRepository;
 	
-	public List<StudentAttendanceRecordDTO> findStudentAttendanceRecord(BigInteger studentCode,BigInteger schoolCode,int classNo, String section) {
-		List<StudentAttendanceRecordDTO> result = studentAttendanceRepository.findByStudentCodeAndSchoolCodeAndClassNoAndSection(studentCode, schoolCode, classNo, section);
-		return result;
-	}
+	@Autowired
+	private StudentRepository studentRepository;
 
-	public List<StudentInfo> findStudentsRecord(BigInteger schoolCode, int classNo, String section) {
-		return studentRepository.findBySchoolCodeAndClassNoAndSection(schoolCode, classNo, section);
+	public List<StudentAttendance> saveStudentsAttendance(Iterable<StudentAttendance> studentAttendanceArray) {
+		List<StudentAttendance> result  = null;
+		if (studentAttendanceRepository.attendanceExists() == 0 ) {
+			result = studentAttendanceRepository.saveAll(studentAttendanceArray);
+			return result;
+		} else {
+			
+			return result;
+		}
+		
+	}
+	public List<SchoolClass> getSchoolClass() {
+		List<SchoolClass> result = schoolClassRepository.findAll();
+		return result;
 	}
 	
-	public List<StudentInfo> findStudentRecord(BigInteger schoolCode, BigInteger studentCode, int classNo, String section) {
-		return studentRepository.findBySchoolCodeAndStudentCodeAndClassNoAndSection(schoolCode, studentCode, classNo, section);
+	public List<SchoolSection> getSchoolSectionByClassId(int classId) {
+		List<SchoolSection> result = schoolSectionRepository.findAllByClassId(classId);
+		return result;
+	}
+	
+	public List<StudentInfo> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass, int studentSection){
+		List<StudentInfo> result = studentRepository.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode, studentClass, studentSection);
+		return result;
+		
 	}
 }

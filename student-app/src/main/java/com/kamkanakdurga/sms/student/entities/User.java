@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.attendance.entities;
+package com.kamkanakdurga.sms.student.entities;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-import com.kamkanakdurga.sms.attendance.entities.Role;
+import com.kamkanakdurga.sms.student.entities.Role;
 
 @Entity(name = "ap_user")
 public class User {

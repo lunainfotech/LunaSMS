@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ap_attendance_student")
-public class StudentAttendanceInfo {
+public class StudentAttendance {
 	
 	public enum AttendanceStatus{ 
 	    Present, Absent 
@@ -31,18 +31,15 @@ public class StudentAttendanceInfo {
 	@Column(name = "student_code")
 	private BigInteger studentCode;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="school_code",referencedColumnName = "school_code", insertable = false, updatable = false)
-    private StudentInfo studentInfo;
 	
 	@Column(name = "school_code")
 	private BigInteger schoolCode;
 	
 	@Column(name = "class")
-	private int classNo;
+	private int studentClass;
 	
 	@Column(name = "section")
-	private String section;
+	private int studentSection;
 	
 	@Column(name = "attendance_status")
 	@Enumerated(EnumType.STRING)
@@ -73,14 +70,6 @@ public class StudentAttendanceInfo {
 		this.studentCode = studentCode;
 	}
 
-	public StudentInfo getStudentInfo() {
-		return studentInfo;
-	}
-
-	public void setStudentInfo(StudentInfo studentInfo) {
-		this.studentInfo = studentInfo;
-	}
-
 	public BigInteger getSchoolCode() {
 		return schoolCode;
 	}
@@ -89,20 +78,20 @@ public class StudentAttendanceInfo {
 		this.schoolCode = schoolCode;
 	}
 
-	public int getClassNo() {
-		return classNo;
+	public int getStudentClass() {
+		return studentClass;
 	}
 
-	public void setClassNo(int classNo) {
-		this.classNo = classNo;
+	public void setStudentClass(int studentClass) {
+		this.studentClass = studentClass;
 	}
 
-	public String getSection() {
-		return section;
+	public int getStudentSection() {
+		return studentSection;
 	}
 
-	public void setSection(String section) {
-		this.section = section;
+	public void setStudentSection(int studentSection) {
+		this.studentSection = studentSection;
 	}
 
 	public AttendanceStatus getAttendanceStatus() {
@@ -136,7 +125,7 @@ public class StudentAttendanceInfo {
 	public void setAttendanceUpdate(Timestamp attendanceUpdate) {
 		this.attendanceUpdate = attendanceUpdate;
 	}
-
+	
 	
 
 }

@@ -11,7 +11,7 @@ import com.kamkanakdurga.sms.attendance.entities.StudentInfo;
 @Repository
 public interface StudentRepository extends JpaRepository<StudentInfo, String> {
 	
-	List<StudentInfo> findBySchoolCodeAndStudentCodeAndClassNoAndSection(BigInteger schoolCode, BigInteger studentCode, int classNo, String section);
+	//List<StudentInfo> findBySchoolCodeAndStudentCodeAndClassNoAndSection(BigInteger schoolCode, BigInteger studentCode, int classNo, String section);
 	
-	List<StudentInfo> findBySchoolCodeAndClassNoAndSection(BigInteger schoolCode, int classNo, String section);
+	List<StudentInfo> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass, int studentSection);
 }

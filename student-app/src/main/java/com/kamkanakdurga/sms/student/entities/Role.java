@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.attendance.entities;
+package com.kamkanakdurga.sms.student.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 

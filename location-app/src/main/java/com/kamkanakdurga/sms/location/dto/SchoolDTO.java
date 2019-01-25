@@ -1,89 +1,94 @@
-package com.kamkanakdurga.sms.location.entities;
+package com.kamkanakdurga.sms.location.dto;
 
 import java.math.BigInteger;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "ap_school")
-public class School {
+import io.swagger.annotations.ApiModelProperty;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SchoolDTO {
+	
+	@ApiModelProperty(position = 0)
 	private Integer id;
-	
-	@Column(name = "district_code")
+
+	@ApiModelProperty(position = 1)
 	private int districtCode;
-	
-	@Column(name = "block_code")
+
+	@ApiModelProperty(position = 2)
+	private String districtName;
+
+	@ApiModelProperty(position = 3)
 	private int blockCode;
-	
-	@Column(name = "school_code")
+
+	@ApiModelProperty(position = 4)
+	private String blockName;
+
+	@ApiModelProperty(position = 5)
 	private BigInteger schoolCode;
-	
-	@Column(name = "school_name")
+
+	@ApiModelProperty(position = 6)
 	private String schoolName;
 	
-	@Column(name = "school_area")
+	@ApiModelProperty(position = 7)
 	private String schoolArea;
 	
-	@Column(name = "school_address")
+	@ApiModelProperty(position = 8)
 	private String schoolAddress;
 	
-	@Column(name = "school_pin")
+	@ApiModelProperty(position = 9)
 	private int schoolPin;
 	
-	@Column(name = "school_contact_name")
+	@ApiModelProperty(position = 10)
 	private String schoolContactName;
 	
-	@Column(name = "school_contact_number")
+	@ApiModelProperty(position = 11)
 	private String schoolContactNumber;
 	
-	@Column(name = "school_email_id")
+	@ApiModelProperty(position = 12)
 	private String schoolEmailId;
 	
-	@Column(name = "school_latitude")
+	@ApiModelProperty(position = 13)
 	private int schoolLatitude;
 	
-	@Column(name = "school_longitude")
+	@ApiModelProperty(position = 14)
 	private int schoolLongitude;
 	
-	@Column(name = "school_of_inc")
+	@ApiModelProperty(position = 15)
 	private String schoolOfInc;
 	
-	@Column(name = "school_max_student")
+	@ApiModelProperty(position = 16)
 	private int schoolMaxStudent;
 	
-	@Column(name = "school_max_teacher")
+	@ApiModelProperty(position = 17)
 	private int schoolMaxTeacher;
 	
-	@Column(name = "school_max_staff")
+	@ApiModelProperty(position = 18)
 	private int schoolMaxStaff;
 	
-	@Column(name = "school_type")
+	@ApiModelProperty(position = 19)
 	private String schoolType;
 	
-	@Column(name = "school_sub_class")
+	@ApiModelProperty(position = 20)
 	private String schoolSubClass;
 	
-	public School() {
-		
+	public SchoolDTO() {
+
 	}
 
-	public School(Integer id, int districtCode, int blockCode, BigInteger schoolCode, String schoolName,
-			String schoolArea, String schoolAddress, int schoolPin, String schoolContactName,
-			String schoolContactNumber, String schoolEmailId, int schoolLatitude, int schoolLongitude,
-			String schoolOfInc, int schoolMaxStudent, int schoolMaxTeacher, int schoolMaxStaff, String schoolType,
-			String schoolSubClass) {
+	public SchoolDTO(Integer id, int districtCode, String districtName, int blockCode, String blockName,
+			BigInteger schoolCode, String schoolName, String schoolArea, String schoolAddress, int schoolPin,
+			String schoolContactName, String schoolContactNumber, String schoolEmailId, int schoolLatitude,
+			int schoolLongitude, String schoolOfInc, int schoolMaxStudent, int schoolMaxTeacher, int schoolMaxStaff,
+			String schoolType, String schoolSubClass) {
 		//super();
 		this.id = id;
 		this.districtCode = districtCode;
+		this.districtName = districtName;
 		this.blockCode = blockCode;
+		this.blockName = blockName;
 		this.schoolCode = schoolCode;
 		this.schoolName = schoolName;
 		this.schoolArea = schoolArea;
@@ -118,12 +123,28 @@ public class School {
 		this.districtCode = districtCode;
 	}
 
+	public String getDistrictName() {
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
+	}
+
 	public int getBlockCode() {
 		return blockCode;
 	}
 
 	public void setBlockCode(int blockCode) {
 		this.blockCode = blockCode;
+	}
+
+	public String getBlockName() {
+		return blockName;
+	}
+
+	public void setBlockName(String blockName) {
+		this.blockName = blockName;
 	}
 
 	public BigInteger getSchoolCode() {
@@ -253,5 +274,6 @@ public class School {
 	public void setSchoolSubClass(String schoolSubClass) {
 		this.schoolSubClass = schoolSubClass;
 	}
+
 	
 }

@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.location.security;
+package com.kamkanakdurga.sms.student.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -18,6 +18,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.filter.CorsFilter;
 
+import com.kamkanakdurga.sms.student.security.JwtTokenFilterConfigurer;
+import com.kamkanakdurga.sms.student.security.JwtTokenProvider;
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -35,14 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     http.authorizeRequests()
-        .antMatchers("/location/heartbeat").permitAll()
-        .antMatchers("/location/school/record/**").permitAll()
-        .antMatchers("/location/school/records/**").permitAll()
-        .antMatchers("/location/school/records/block_code/**").permitAll()
-        .antMatchers("/location/school/records/dictrict_code/**").permitAll()
-        .antMatchers("/location/mandal/records/**").permitAll()
-        .antMatchers("/location/district/records/**").permitAll()
-
+        .antMatchers("/student/heartbeat").permitAll()
+        .antMatchers("/student/district").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin().loginPage("/users/signin/*").failureUrl("/users/signin?error").permitAll()

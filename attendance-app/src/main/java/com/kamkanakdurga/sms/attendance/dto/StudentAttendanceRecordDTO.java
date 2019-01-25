@@ -3,8 +3,8 @@ package com.kamkanakdurga.sms.attendance.dto;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import com.kamkanakdurga.sms.attendance.entities.StudentAttendanceInfo;
-import com.kamkanakdurga.sms.attendance.entities.StudentAttendanceInfo.AttendanceStatus;
+import com.kamkanakdurga.sms.attendance.entities.StudentAttendance;
+import com.kamkanakdurga.sms.attendance.entities.StudentAttendance.AttendanceStatus;
 
 public class StudentAttendanceRecordDTO {
 	
@@ -19,7 +19,7 @@ public class StudentAttendanceRecordDTO {
 	private String studentLastName;
 
 	@Enumerated(EnumType.STRING)
-    private StudentAttendanceInfo.AttendanceStatus attendanceStatus;
+    private StudentAttendance.AttendanceStatus attendanceStatus;
 
 	
 	public StudentAttendanceRecordDTO() {
@@ -28,7 +28,7 @@ public class StudentAttendanceRecordDTO {
 
 
 	public StudentAttendanceRecordDTO(int classNo, String section, int rollNo, String studentFirstName,
-			String studentLastName, StudentAttendanceInfo.AttendanceStatus attendanceStatus) {
+			String studentLastName, StudentAttendance.AttendanceStatus attendanceStatus) {
 		super();
 		this.classNo = classNo;
 		this.section = section;
@@ -89,12 +89,12 @@ public class StudentAttendanceRecordDTO {
 	}
 
 
-	public StudentAttendanceInfo.AttendanceStatus getAttendanceStatus() {
+	public StudentAttendance.AttendanceStatus getAttendanceStatus() {
 		return attendanceStatus;
 	}
 
 
-	public void setAttendanceStatus(StudentAttendanceInfo.AttendanceStatus attendanceStatus) {
+	public void setAttendanceStatus(StudentAttendance.AttendanceStatus attendanceStatus) {
 		this.attendanceStatus = attendanceStatus;
 	}
 	
