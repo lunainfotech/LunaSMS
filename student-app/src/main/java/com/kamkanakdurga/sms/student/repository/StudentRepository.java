@@ -1,5 +1,6 @@
 package com.kamkanakdurga.sms.student.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,8 +10,7 @@ import com.kamkanakdurga.sms.student.entities.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Integer>  {
 	
-	@Query("SELECT new com.kamkanakdurga.sms.student.entities.Student("
-			+ "S.id, "
+	@Query("SELECT new com.kamkanakdurga.sms.student.dto.StudentDTO("
 			+ "S.studentCode, "
 			+ "S.schoolCode, "
 			+ "S.studentFirstName, "
@@ -43,8 +43,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 			+ "S.studentLandline, "
 			+ "S.studentBloodGroup, "
 			+ "S.studentReligion, "
-			+ "S.studentCast, "
-			+ "S.studentCastCertNo, "
+			+ "S.studentCaste, "
+			+ "S.studentCasteCertNo, "
 			+ "S.studentHeight, "
 			+ "S.studentWeight, "
 			+ "S.studentCreationDate, "
@@ -54,5 +54,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer>  {
 			+ "WHERE S.studentCode = ?1"
 			)
 	
-	List<Student> findStudentbyStudentCode(int studentCode);
+	List<Student> findStudentbyStudentCode(BigInteger studentCode);
 }

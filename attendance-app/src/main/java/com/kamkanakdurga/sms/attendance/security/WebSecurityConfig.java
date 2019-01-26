@@ -37,6 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.authorizeRequests()
         .antMatchers("/attendance/heartbeat").permitAll()
         .antMatchers("/attendance/students/attendance/take").permitAll()
+        .antMatchers("/attendance/school/class").permitAll()
+        .antMatchers("/attendance/school/section**").permitAll()
         .anyRequest().authenticated();
 
     // If a user try to access a resource without having enough permissions
