@@ -43,7 +43,6 @@ public class StudentService {
 		User user = new User();
 		user.setUsername(String.valueOf(studentInfo.getStudentCode()));
 		user.setPassword(String.valueOf(studentInfo.getStudentCode()));
-		user.setEmail(studentInfo.getStudentFatherEmail());
 		List<Role> role = new ArrayList<Role>();
 		role.add(Role.ROLE_STUDENT);
 		user.setRole(role);
