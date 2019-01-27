@@ -11,15 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import java.math.BigInteger;
-
-enum Gender{
-	Male, Female;
-}
 
 @Entity
 @Table(name = "ap_student")
 public class Student {
+	
+	public enum Gender{
+		Male, Female;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

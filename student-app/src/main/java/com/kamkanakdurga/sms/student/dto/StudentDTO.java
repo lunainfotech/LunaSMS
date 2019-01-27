@@ -1,12 +1,10 @@
 package com.kamkanakdurga.sms.student.dto;
 
 import java.math.BigInteger;
+import com.kamkanakdurga.sms.student.entities.Student.Gender;
 
 public class StudentDTO {
 	
-	enum Gender {
-			Male, Female;
-	}
 	private BigInteger studentCode;
 	private BigInteger schoolCode;
 	private String studentFirstName;
@@ -323,7 +321,5 @@ public class StudentDTO {
 	public void setStudentUpdateDate(String studentUpdateDate) {
 		this.studentUpdateDate = studentUpdateDate;
 	}
-	
-	
 	
 }
