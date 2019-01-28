@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.user.entities;
+package com.kamkanakdurga.sms.library.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

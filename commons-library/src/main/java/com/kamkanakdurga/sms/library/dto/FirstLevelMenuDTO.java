@@ -1,8 +1,8 @@
-package com.kamkanakdurga.sms.user.dto;
+package com.kamkanakdurga.sms.library.dto;
 
 import java.util.List;
 
-import com.kamkanakdurga.sms.user.dto.MenuInfoDTO;
+import com.kamkanakdurga.sms.library.dto.MenuInfoDTO;
 
 import io.swagger.annotations.ApiModelProperty;
 

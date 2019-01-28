@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.user.dto;
+package com.kamkanakdurga.sms.library.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 

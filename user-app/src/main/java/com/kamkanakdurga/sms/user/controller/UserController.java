@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kamkanakdurga.sms.user.dto.UserDetailsDTO;
-import com.kamkanakdurga.sms.user.dto.UserResponseDTO;
-import com.kamkanakdurga.sms.user.entities.Role;
-import com.kamkanakdurga.sms.user.entities.User;
+import com.kamkanakdurga.sms.library.dto.UserDetailsDTO;
+import com.kamkanakdurga.sms.library.dto.UserResponseDTO;
+import com.kamkanakdurga.sms.library.entities.Role;
+import com.kamkanakdurga.sms.library.entities.User;
 import com.kamkanakdurga.sms.user.service.MenuService;
-import com.kamkanakdurga.sms.user.service.UserService;
+import com.kamkanakdurga.sms.library.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

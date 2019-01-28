@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.user.entities;
+package com.kamkanakdurga.sms.library.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,33 +8,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ap_menu")
-public class Menu {
-
+@Table(name = "ap_menu_groups")
+public class MenuGroups {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
-	@Column(name = "name", unique = true, nullable = false)
-	private String name;
-
-	@Column(name = "description", unique = true, nullable = false)
-	private String description;
-
-	@Column(name = "sequence", nullable = false)
-	private int sequence;
-
-	@Column(name = "deleted", nullable = false)
-	private int deleted;
-
-	@Column(name = "in_active", nullable = false)
-	private int InActive;
-
-	@Column(name = "url", unique = true, nullable = false)
-	private String url;
-
-	@Column(name = "group_id", nullable = false)
-	private int groupId;
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  private Integer id;
+	
+	  @Column(name = "name", unique = true, nullable = false)
+	  private String name;
+	  
+	  @Column(name = "description", unique = true, nullable = false)
+	  private String description;
+	  
+	  @Column(name = "url", unique = true, nullable = false)
+	  private String url;
+	  
+	  @Column(name = "sequence", nullable = false)
+	  private int sequence;
+	  
+	  @Column(name = "deleted", nullable = false)
+	  private int deleted;
+	  
+	  @Column(name = "in_active", nullable = false)
+	  private int InActive;
 
 	public Integer getId() {
 		return id;
@@ -60,6 +57,14 @@ public class Menu {
 		this.description = description;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public int getSequence() {
 		return sequence;
 	}
@@ -82,22 +87,6 @@ public class Menu {
 
 	public void setInActive(int inActive) {
 		InActive = inActive;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public int getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
 	}
 
 }

@@ -1,29 +1,19 @@
-package com.kamkanakdurga.sms.user.dto;
+package com.kamkanakdurga.sms.library.dto;
 
 import java.util.List;
 
-import com.kamkanakdurga.sms.user.entities.Role;
+import com.kamkanakdurga.sms.library.entities.Role;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class UserResponseDTO {
-
+public class UserDataDTO {
+  
   @ApiModelProperty(position = 0)
-  private Integer id;
-  @ApiModelProperty(position = 1)
   private String username;
-  @ApiModelProperty(position = 2)
+  @ApiModelProperty(position = 1)
   private String email;
-  @ApiModelProperty(position = 3)
+  @ApiModelProperty(position = 2)
   List<Role> role;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
 
   public String getUsername() {
     return username;

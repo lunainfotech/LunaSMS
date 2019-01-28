@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.user.service;
+package com.kamkanakdurga.sms.library.service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,10 +10,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kamkanakdurga.sms.user.entities.User;
-import com.kamkanakdurga.sms.user.exception.CustomException;
-import com.kamkanakdurga.sms.user.repository.UserRepository;
-import com.kamkanakdurga.sms.user.security.JwtTokenProvider;
+import com.kamkanakdurga.sms.library.entities.User;
+import com.kamkanakdurga.sms.library.exception.CustomException;
+import com.kamkanakdurga.sms.library.repository.UserRepository;
+import com.kamkanakdurga.sms.library.security.JwtTokenProvider;
 
 @Service
 public class UserService {
