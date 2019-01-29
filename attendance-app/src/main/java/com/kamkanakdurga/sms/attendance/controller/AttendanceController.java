@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kamkanakdurga.sms.attendance.entities.SchoolClass;
-import com.kamkanakdurga.sms.attendance.entities.SchoolSection;
-import com.kamkanakdurga.sms.attendance.entities.StudentAttendance;
-import com.kamkanakdurga.sms.attendance.entities.StudentInfo;
 import com.kamkanakdurga.sms.attendance.service.AttendanceService;
+import com.kamkanakdurga.sms.library.entities.SchoolClass;
+import com.kamkanakdurga.sms.library.entities.SchoolSection;
+import com.kamkanakdurga.sms.library.entities.StudentAttendance;
+import com.kamkanakdurga.sms.library.entities.StudentInfo;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -40,9 +39,6 @@ public class AttendanceController {
 
 	@Autowired
 	private AttendanceService attendanceService;
-
-	@Autowired
-	private ModelMapper modelMapper;
 
 	@RequestMapping(value = "/attendance/heartbeat", method = RequestMethod.GET)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
@@ -77,26 +73,26 @@ public class AttendanceController {
 		if (studentAttendanceArray != null && studentAttendanceArray.length > 0) {
 			Iterable<StudentAttendance> iterable = Arrays.asList(studentAttendanceArray);
 			List<StudentAttendance> result = attendanceService.saveStudentsAttendance(iterable);
-			
-			if(result == null) {
+
+			if (result == null) {
 				map.put("status", "not_ok");
 				map.put("response Code", "400");
 				map.put("message", "Attendance already taken");
 				return map;
 			}
-			
+
 			map.put("status", "ok");
 			map.put("response Code", "200");
 			map.put("message", "records inserted sucessfully");
 			return map;
-			
+
 		} else {
 			map.put("status", "not_ok");
 			map.put("message", "records not inserted!");
 			return map;
 		}
 	}
-	
+
 	@RequestMapping(value = "/attendance/school/class", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
@@ -106,11 +102,11 @@ public class AttendanceController {
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public List<SchoolClass> getSchoolClass() {
-		
+
 		List<SchoolClass> results = attendanceService.getSchoolClass();
 		return results;
 	}
-	
+
 	@RequestMapping(value = "/attendance/school/section", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
@@ -120,11 +116,11 @@ public class AttendanceController {
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public List<SchoolSection> getSchoolSectionByClassId(@RequestParam("class_id") int classId) {
-		
+
 		List<SchoolSection> results = attendanceService.getSchoolSectionByClassId(classId);
 		return results;
 	}
-	
+
 	@RequestMapping(value = "/attendance/getstudent", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
@@ -133,9 +129,12 @@ public class AttendanceController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<StudentInfo> getBySchoolCodeAndStudentClassAndStudentSection(@RequestParam("school_code") BigInteger schoolCode, @RequestParam("class") int studentClass, @RequestParam("section") int studentSection ) {
-		
-		List<StudentInfo> results = attendanceService.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode, studentClass, studentSection);
+	public List<StudentInfo> getBySchoolCodeAndStudentClassAndStudentSection(
+			@RequestParam("school_code") BigInteger schoolCode, @RequestParam("class") int studentClass,
+			@RequestParam("section") int studentSection) {
+
+		List<StudentInfo> results = attendanceService.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
+				studentClass, studentSection);
 		return results;
 	}
 }

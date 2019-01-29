@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.kamkanakdurga.sms.attendance.entities.SchoolSection;
+import com.kamkanakdurga.sms.library.entities.SchoolSection;
 
 public interface SchoolSectionRepository extends JpaRepository<SchoolSection, String>{
 

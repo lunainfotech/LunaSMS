@@ -1,6 +1,4 @@
-package com.kamkanakdurga.sms.attendance.entities;
-
-import java.math.BigInteger;
+package com.kamkanakdurga.sms.library.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

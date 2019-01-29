@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.kamkanakdurga.sms.attendance.entities.StudentAttendance;
+import com.kamkanakdurga.sms.library.entities.StudentAttendance;
 
 @Repository
 public interface StudentAttendanceRepository extends JpaRepository<StudentAttendance, String> {
