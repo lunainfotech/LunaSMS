@@ -9,14 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.kamkanakdurga.sms.student.entities.Role;
-import com.kamkanakdurga.sms.student.entities.Student;
+import com.kamkanakdurga.sms.library.entities.Role;
+import com.kamkanakdurga.sms.library.entities.Student;
+import com.kamkanakdurga.sms.library.entities.User;
+import com.kamkanakdurga.sms.library.exception.CustomException;
+import com.kamkanakdurga.sms.library.repository.UserRepository;
+import com.kamkanakdurga.sms.library.security.JwtTokenProvider;
 import com.kamkanakdurga.sms.student.repository.StudentRepository;
-import com.kamkanakdurga.sms.student.repository.UserRepository;
-import com.kamkanakdurga.sms.student.security.JwtTokenProvider;
-import com.kamkanakdurga.sms.student.exception.CustomException;
-
-import com.kamkanakdurga.sms.student.entities.User;
 
 @Service
 public class StudentService {
@@ -55,7 +54,7 @@ public class StudentService {
 			throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		Student result = new Student();
-		if(jwtTokenProvider.validateToken(userToken)) {
+		if (jwtTokenProvider.validateToken(userToken)) {
 			result = studentRepository.save(studentInfo);
 		}
 		return result;

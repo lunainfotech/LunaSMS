@@ -1,7 +1,6 @@
 package com.kamkanakdurga.sms.student.dto;
 
 import java.math.BigInteger;
-import com.kamkanakdurga.sms.student.entities.Student.Gender;
 
 public class StudentDTO {
 	
@@ -10,7 +9,7 @@ public class StudentDTO {
 	private String studentFirstName;
 	private String studentLastName;
 	private String studentDOB;
-	private Gender studentGender;
+	private String studentGender;
 	private BigInteger aadharNumber;
 	private BigInteger admissionNo;
 	private int studentClass;
@@ -44,7 +43,7 @@ public class StudentDTO {
 	private String studentCreationDate;
 	private String studentUpdateDate;
 	public StudentDTO(BigInteger studentCode, BigInteger schoolCode, String studentFirstName, String studentLastName,
-			String studentDOB, Gender studentGender, BigInteger aadharNumber, BigInteger admissionNo, int studentClass,
+			String studentDOB, String studentGender, BigInteger aadharNumber, BigInteger admissionNo, int studentClass,
 			int studentSection, int studentRoll, String studentJoinDate, int studentAdmissionClass,
 			String studentAddress1, String studentAddress2, String studentAddress3, int studentPin,
 			BigInteger studentVillageCode, int studentMandalCode, int studentDistrictCode, int studentStateCode,
@@ -123,10 +122,10 @@ public class StudentDTO {
 	public void setStudentDOB(String studentDOB) {
 		this.studentDOB = studentDOB;
 	}
-	public Gender getStudentGender() {
+	public String getStudentGender() {
 		return studentGender;
 	}
-	public void setStudentGender(Gender studentGender) {
+	public void setStudentGender(String studentGender) {
 		this.studentGender = studentGender;
 	}
 	public BigInteger getAadharNumber() {

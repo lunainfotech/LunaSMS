@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.student;
+package com.kamkanakdurga.sms;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Bean;
 public class StudentApplication {
 
 	public static void main(String[] args) {
-        SpringApplication.run(StudentApplication.class, args);
-    }
-    
-    @Bean
-    public ModelMapper modelMapper() {
-      return new ModelMapper();
-    }  
-	
+		SpringApplication.run(StudentApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+
 }

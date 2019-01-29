@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kamkanakdurga.sms.library.entities.StudentAttendance;
-import com.kamkanakdurga.sms.library.entities.StudentInfo;
+import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.library.entities.SchoolClass;
 import com.kamkanakdurga.sms.library.entities.SchoolSection;
 import com.kamkanakdurga.sms.attendance.repository.SchoolClassRepository;
@@ -52,9 +52,9 @@ public class AttendanceService {
 		return result;
 	}
 
-	public List<StudentInfo> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass,
+	public List<Student> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass,
 			int studentSection) {
-		List<StudentInfo> result = studentRepository.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
+		List<Student> result = studentRepository.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
 				studentClass, studentSection);
 		return result;
 

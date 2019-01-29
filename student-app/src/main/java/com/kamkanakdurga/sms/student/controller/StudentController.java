@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kamkanakdurga.sms.student.dto.StudentDTO;
-import com.kamkanakdurga.sms.student.entities.Student;
+import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.student.service.StudentService;
 
 import io.swagger.annotations.Api;
@@ -35,10 +32,10 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/student")
 @Api(tags = "student")
 public class StudentController {
-	
+
 	@Autowired
 	private StudentService studentService;
-	
+
 	@RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
@@ -57,7 +54,7 @@ public class StudentController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping(value = "/student_code")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
@@ -73,7 +70,7 @@ public class StudentController {
 		List<Student> result = studentService.getStudentRecordsBySchoolCode(studentCode);
 		return result;
 	}
-	
+
 	@PostMapping(value = "/save")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@ApiOperation(value = "Geting menu details of user")
@@ -86,5 +83,5 @@ public class StudentController {
 		Student result = studentService.saveStudentRecord(studentInfo);
 		return result;
 	}
-	
+
 }

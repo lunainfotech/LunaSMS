@@ -21,7 +21,7 @@ import com.kamkanakdurga.sms.attendance.service.AttendanceService;
 import com.kamkanakdurga.sms.library.entities.SchoolClass;
 import com.kamkanakdurga.sms.library.entities.SchoolSection;
 import com.kamkanakdurga.sms.library.entities.StudentAttendance;
-import com.kamkanakdurga.sms.library.entities.StudentInfo;
+import com.kamkanakdurga.sms.library.entities.Student;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -129,11 +129,11 @@ public class AttendanceController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<StudentInfo> getBySchoolCodeAndStudentClassAndStudentSection(
+	public List<Student> getBySchoolCodeAndStudentClassAndStudentSection(
 			@RequestParam("school_code") BigInteger schoolCode, @RequestParam("class") int studentClass,
 			@RequestParam("section") int studentSection) {
 
-		List<StudentInfo> results = attendanceService.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
+		List<Student> results = attendanceService.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
 				studentClass, studentSection);
 		return results;
 	}

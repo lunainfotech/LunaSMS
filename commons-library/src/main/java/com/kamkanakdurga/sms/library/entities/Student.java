@@ -1,24 +1,17 @@
-package com.kamkanakdurga.sms.student.entities;
+package com.kamkanakdurga.sms.library.entities;
 
 import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "ap_student")
 public class Student {
-	
-	public enum Gender{
-		Male, Female;
-	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +33,7 @@ public class Student {
 	private String studentDOB;
 	
 	@Column(name = "gender")
-	@Enumerated(EnumType.STRING)
-	private Gender studentGender;
+	private String studentGender;
 	
 	@Column(name = "aadhar_number")
 	private BigInteger aadharNumber;
@@ -187,11 +179,11 @@ public class Student {
 		this.studentDOB = studentDOB;
 	}
 
-	public Gender getStudentGender() {
+	public String getStudentGender() {
 		return studentGender;
 	}
 
-	public void setStudentGender(Gender studentGender) {
+	public void setStudentGender(String studentGender) {
 		this.studentGender = studentGender;
 	}
 
@@ -450,58 +442,5 @@ public class Student {
 	public void setStudentUpdateDate(String studentUpdateDate) {
 		this.studentUpdateDate = studentUpdateDate;
 	}
-
-//	public Student(Integer id, BigInteger studentCode, BigInteger schoolCode, String studentFirstName, String studentLastName,
-//			String studentDOB, Gender studentGender, BigInteger aadharNumber, BigInteger admissionNo, int studentClass,
-//			String studentSection, int studentRoll, String studentJoinDate, int studentAdmissionClass,
-//			String studentAddress1, String studentAddress2, String studentAddress3, int studentPin,
-//			BigInteger studentVillageCode, int studentMandalCode, int studentDistrictCode, int studentStateCode,
-//			String studentFatherName, String studentFatherOccupation, String studentFatherIncom,
-//			BigInteger studentFatherMobile, String studentFatherEmail, String studentMothername,
-//			String studentMotherOccupation, BigInteger studentMotherMobile, BigInteger studentLandline,
-//			String studentBloodGroup, String studentReligion, int studentCaste, String studentCasteCertNo,
-//			int studentHeight, int studentWeight, String studentCreationDate, String studentUpdateDate) {
-//		super();
-//		this.id = id;
-//		this.studentCode = studentCode;
-//		this.schoolCode = schoolCode;
-//		this.studentFirstName = studentFirstName;
-//		this.studentLastName = studentLastName;
-//		this.studentDOB = studentDOB;
-//		this.studentGender = studentGender;
-//		this.aadharNumber = aadharNumber;
-//		this.admissionNo = admissionNo;
-//		this.studentClass = studentClass;
-//		this.studentSection = studentSection;
-//		this.studentRoll = studentRoll;
-//		this.studentJoinDate = studentJoinDate;
-//		this.studentAdmissionClass = studentAdmissionClass;
-//		this.studentAddress1 = studentAddress1;
-//		this.studentAddress2 = studentAddress2;
-//		this.studentAddress3 = studentAddress3;
-//		this.studentPin = studentPin;
-//		this.studentVillageCode = studentVillageCode;
-//		this.studentMandalCode = studentMandalCode;
-//		this.studentDistrictCode = studentDistrictCode;
-//		this.studentStateCode = studentStateCode;
-//		this.studentFatherName = studentFatherName;
-//		this.studentFatherOccupation = studentFatherOccupation;
-//		this.studentFatherIncom = studentFatherIncom;
-//		this.studentFatherMobile = studentFatherMobile;
-//		this.studentFatherEmail = studentFatherEmail;
-//		this.studentMothername = studentMothername;
-//		this.studentMotherOccupation = studentMotherOccupation;
-//		this.studentMotherMobile = studentMotherMobile;
-//		this.studentLandline = studentLandline;
-//		this.studentBloodGroup = studentBloodGroup;
-//		this.studentReligion = studentReligion;
-//		this.studentCaste = studentCaste;
-//		this.studentCasteCertNo = studentCasteCertNo;
-//		this.studentHeight = studentHeight;
-//		this.studentWeight = studentWeight;
-//		this.studentCreationDate = studentCreationDate;
-//		this.studentUpdateDate = studentUpdateDate;
-//	}
-
-
+    
 }
