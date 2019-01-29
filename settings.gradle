@@ -1,3 +1,7 @@
+rootProject.name = 'LunaSMS'
+
+include 'commons-library'
+
 include 'admission-app'
 include 'student-app'
 include 'teacher-app'
@@ -8,7 +12,5 @@ include 'event-app'
 include 'report-app'
 include 'user-app'
 
-include 'commons-library'
 include 'test-module'
 
-rootProject.name = 'LunaSMS'
