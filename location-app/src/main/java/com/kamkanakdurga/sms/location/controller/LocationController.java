@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kamkanakdurga.sms.library.entities.District;
+import com.kamkanakdurga.sms.library.entities.Mandal;
 import com.kamkanakdurga.sms.location.dto.SchoolDTO;
 import com.kamkanakdurga.sms.location.dto.SchoolListDTO;
-import com.kamkanakdurga.sms.location.entities.District;
-import com.kamkanakdurga.sms.location.entities.Mandal;
-import com.kamkanakdurga.sms.location.entities.School;
 import com.kamkanakdurga.sms.location.service.LocationService;
 
 import io.swagger.annotations.Api;
@@ -38,9 +36,6 @@ public class LocationController {
 
 	@Autowired
 	private LocationService locationService;
-	
-	@Autowired
-	private ModelMapper modelMapper;
 
 	@RequestMapping(value = "/heartbeat", method = RequestMethod.GET)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
@@ -60,7 +55,7 @@ public class LocationController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping(value = "/school/record")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
@@ -75,7 +70,7 @@ public class LocationController {
 	public List<SchoolDTO> getSchoolRecords(@RequestParam("school_code") BigInteger schoolCode) {
 		List<SchoolDTO> schoolRecords = locationService.findSchoolRecordBySchoolCode(schoolCode);
 		return schoolRecords;
-		//return (SchoolDTO) locationService.findSchoolRecordBySchoolCode(schoolCode);
+		// return (SchoolDTO) locationService.findSchoolRecordBySchoolCode(schoolCode);
 	}
 
 	@GetMapping(value = "/school/records")
@@ -118,7 +113,8 @@ public class LocationController {
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public Page<SchoolListDTO> getSchoolRecordsByDistrictCode(@RequestParam("district_code") int dictrictCode,
 			@RequestParam("page") int page, @RequestParam("records") int records) {
-		Page<SchoolListDTO> schoolRecords = locationService.findAllSchoolRecordsByDistrictCode(dictrictCode, page, records);
+		Page<SchoolListDTO> schoolRecords = locationService.findAllSchoolRecordsByDistrictCode(dictrictCode, page,
+				records);
 		return schoolRecords;
 	}
 
@@ -139,7 +135,6 @@ public class LocationController {
 		return mandalRecords;
 	}
 
-	
 	@GetMapping(value = "/mandal/records/dictrict_code")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
@@ -151,13 +146,13 @@ public class LocationController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	
+
 	public List<Mandal> getMandalByDistrictCode(@RequestParam("code") int districtCode) {
 		List<Mandal> mandalRecords = locationService.findMandalRecordsByDistrictCode(districtCode);
 		return mandalRecords;
 	}
-	
-	/*District Controller*/
+
+	/* District Controller */
 	@GetMapping(value = "/district/records")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "

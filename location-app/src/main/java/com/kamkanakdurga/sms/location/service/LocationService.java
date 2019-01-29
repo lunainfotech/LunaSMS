@@ -8,11 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.kamkanakdurga.sms.location.entities.School;
+import com.kamkanakdurga.sms.library.entities.District;
+import com.kamkanakdurga.sms.library.entities.Mandal;
 import com.kamkanakdurga.sms.location.dto.SchoolDTO;
 import com.kamkanakdurga.sms.location.dto.SchoolListDTO;
-import com.kamkanakdurga.sms.location.entities.District;
-import com.kamkanakdurga.sms.location.entities.Mandal;
 import com.kamkanakdurga.sms.location.repository.DistrictRepository;
 import com.kamkanakdurga.sms.location.repository.MandalRepository;
 import com.kamkanakdurga.sms.location.repository.SchoolRepository;
@@ -25,7 +24,7 @@ public class LocationService {
 
 	@Autowired
 	private MandalRepository mandalRepository;
-	
+
 	@Autowired
 	private DistrictRepository districtRepository;
 
@@ -71,22 +70,23 @@ public class LocationService {
 		}
 		return schoolRepository.findAllSchoolRecordsByDistrictCode(districtCode, new PageRequest(page, records));
 	}
-	
+
 	public List<SchoolDTO> findSchoolRecordBySchoolCode(BigInteger schoolCode) {
-		List<SchoolDTO> results =  schoolRepository.findSchoolRecordBySchoolCode(schoolCode);
+		List<SchoolDTO> results = schoolRepository.findSchoolRecordBySchoolCode(schoolCode);
 		return results;
 	}
-	
+
 	/* Mandal Service */
 	public List<Mandal> findMandalRecords() {
 		List<Mandal> result = mandalRepository.findAllMandal();
 		return result;
 	}
+
 	public List<Mandal> findMandalRecordsByDistrictCode(int districtCode) {
 		List<Mandal> result = mandalRepository.findMandalByBlockCode(districtCode);
 		return result;
 	}
-	
+
 	/* District Service */
 	public List<District> findDistrictRecords() {
 		List<District> result = districtRepository.findAllDistrict();

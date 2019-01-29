@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.kamkanakdurga.sms.location.dto.SchoolDTO;
 import com.kamkanakdurga.sms.location.dto.SchoolListDTO;
-import com.kamkanakdurga.sms.location.entities.School;
+import com.kamkanakdurga.sms.library.entities.School;
 
 public interface SchoolRepository extends JpaRepository<School, Integer> {
 

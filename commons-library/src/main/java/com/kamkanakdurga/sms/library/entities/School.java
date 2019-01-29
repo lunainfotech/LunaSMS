@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.location.entities;
+package com.kamkanakdurga.sms.library.entities;
 
 import java.math.BigInteger;
 
