@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.kamkanakdurga.sms.teacher.dto.TeacherRecordsDTO;
-import com.kamkanakdurga.sms.teacher.entities.Teacher;
+import com.kamkanakdurga.sms.library.entities.Teacher;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 

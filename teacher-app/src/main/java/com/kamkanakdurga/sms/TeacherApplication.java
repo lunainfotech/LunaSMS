@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.teacher;
+package com.kamkanakdurga.sms;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

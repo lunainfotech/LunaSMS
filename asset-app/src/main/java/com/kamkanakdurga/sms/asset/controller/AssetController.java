@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.controller;
+package com.kamkanakdurga.sms.asset.controller;
 
 import java.io.IOException;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.teacher.entities;
+package com.kamkanakdurga.sms.library.entities;
 
 import java.math.BigInteger;
 import java.sql.Date;

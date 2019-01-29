@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kamkanakdurga.sms.teacher.dto.TeacherRecordsDTO;
-import com.kamkanakdurga.sms.teacher.entities.Teacher;
 import com.kamkanakdurga.sms.teacher.service.TeacherService;
 
 import io.swagger.annotations.Api;
@@ -53,7 +51,7 @@ public class TeacherController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping(value = "/records")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_MEO') " + "or hasRole('ROLE_DEO') "
@@ -64,38 +62,14 @@ public class TeacherController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public Page<TeacherRecordsDTO> getTeacherRecords(@RequestParam("School Code") BigInteger schoolCode, @RequestParam("Page") int page, @RequestParam("records") int records) {
-		
-		Page<TeacherRecordsDTO> teacherRecords = teacherService.getTeacherRecordsBySchoolCode(schoolCode,page,records);
-		
+	public Page<TeacherRecordsDTO> getTeacherRecords(@RequestParam("School Code") BigInteger schoolCode,
+			@RequestParam("Page") int page, @RequestParam("records") int records) {
+
+		Page<TeacherRecordsDTO> teacherRecords = teacherService.getTeacherRecordsBySchoolCode(schoolCode, page,
+				records);
+
 		return teacherRecords;
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
