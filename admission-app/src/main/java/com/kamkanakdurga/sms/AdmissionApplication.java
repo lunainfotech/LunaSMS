@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.admission;
+package com.kamkanakdurga.sms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

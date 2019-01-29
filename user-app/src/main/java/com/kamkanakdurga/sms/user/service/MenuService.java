@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kamkanakdurga.sms.library.dto.FirstLevelMenuDTO;
+import com.kamkanakdurga.sms.user.dto.FirstLevelMenuDTO;
 import com.kamkanakdurga.sms.user.repository.MenuRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.library.dto;
+package com.kamkanakdurga.sms.user.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,7 +9,7 @@ public class MenuInfoDTO {
 
 	@ApiModelProperty(position = 1)
 	private String name;
-	
+
 	@ApiModelProperty(position = 2)
 	private String description;
 

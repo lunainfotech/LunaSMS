@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kamkanakdurga.sms.library.dto.UserDetailsDTO;
-import com.kamkanakdurga.sms.library.dto.UserResponseDTO;
 import com.kamkanakdurga.sms.library.entities.Role;
 import com.kamkanakdurga.sms.library.entities.User;
-import com.kamkanakdurga.sms.user.service.MenuService;
 import com.kamkanakdurga.sms.library.service.UserService;
+import com.kamkanakdurga.sms.user.dto.UserDetailsDTO;
+import com.kamkanakdurga.sms.user.dto.UserResponseDTO;
+import com.kamkanakdurga.sms.user.service.MenuService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -41,7 +41,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private MenuService menuService;
 
@@ -71,8 +71,7 @@ public class UserController {
 	@ApiOperation(value = "${UserController.signin}")
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 422, message = "Invalid username/password supplied") })
-	public String login(
-			@RequestBody User user) {
+	public String login(@RequestBody User user) {
 		return userService.signin(user.getUsername(), user.getPassword());
 	}
 
@@ -84,7 +83,7 @@ public class UserController {
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public String signup(@ApiParam("Signup User") @RequestBody User user) {
 		return userService.signup(modelMapper.map(user, User.class));
-	}	
+	}
 
 	@DeleteMapping(value = "/{username}")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
@@ -112,7 +111,7 @@ public class UserController {
 	public UserResponseDTO search(@ApiParam("Username") @PathVariable String username) {
 		return modelMapper.map(userService.search(username), UserResponseDTO.class);
 	}
-	
+
 	@GetMapping(value = "/me")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "

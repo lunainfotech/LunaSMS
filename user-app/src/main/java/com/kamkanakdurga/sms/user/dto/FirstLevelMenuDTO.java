@@ -1,8 +1,6 @@
-package com.kamkanakdurga.sms.library.dto;
+package com.kamkanakdurga.sms.user.dto;
 
 import java.util.List;
-
-import com.kamkanakdurga.sms.library.dto.MenuInfoDTO;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,7 +17,7 @@ public class FirstLevelMenuDTO {
 
 	@ApiModelProperty(position = 3)
 	String url;
-	
+
 	@ApiModelProperty(position = 4)
 	List<MenuInfoDTO> childmenu;
 
@@ -73,5 +71,5 @@ public class FirstLevelMenuDTO {
 	public void setChildmenu(List<MenuInfoDTO> childmenu) {
 		this.childmenu = childmenu;
 	}
-	
+
 }

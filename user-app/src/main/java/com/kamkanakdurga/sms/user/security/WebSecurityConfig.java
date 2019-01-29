@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.library.security;
+package com.kamkanakdurga.sms.user.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -17,6 +17,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import com.kamkanakdurga.sms.library.security.JwtTokenFilterConfigurer;
+import com.kamkanakdurga.sms.library.security.JwtTokenProvider;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)

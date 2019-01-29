@@ -1,14 +1,14 @@
-package com.kamkanakdurga.sms.library.dto;
+package com.kamkanakdurga.sms.user.dto;
 
 import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
 
 public class UserDetailsDTO {
-	
+
 	@ApiModelProperty(position = 0)
 	UserResponseDTO user;
-	
+
 	@ApiModelProperty(position = 1)
 	List<FirstLevelMenuDTO> menuDetails;
 
@@ -28,5 +28,4 @@ public class UserDetailsDTO {
 		this.menuDetails = menuDetails;
 	}
 
-	
 }
