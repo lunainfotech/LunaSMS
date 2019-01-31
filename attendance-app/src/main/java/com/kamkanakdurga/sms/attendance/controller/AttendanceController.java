@@ -3,6 +3,7 @@ package com.kamkanakdurga.sms.attendance.controller;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kamkanakdurga.sms.attendance.dto.ViewAttendanceDTO;
 import com.kamkanakdurga.sms.attendance.service.AttendanceService;
 import com.kamkanakdurga.sms.library.entities.SchoolClass;
 import com.kamkanakdurga.sms.library.entities.SchoolSection;
@@ -71,8 +73,11 @@ public class AttendanceController {
 			@RequestBody StudentAttendance[] studentAttendanceArray) {
 		HashMap<String, String> map = new HashMap<>();
 		if (studentAttendanceArray != null && studentAttendanceArray.length > 0) {
+			BigInteger schoolCode = studentAttendanceArray[0].getSchoolCode();
+			int studentClass = studentAttendanceArray[0].getStudentClass();
+			int studentSection = studentAttendanceArray[0].getStudentSection();
 			Iterable<StudentAttendance> iterable = Arrays.asList(studentAttendanceArray);
-			List<StudentAttendance> result = attendanceService.saveStudentsAttendance(iterable);
+			List<StudentAttendance> result = attendanceService.saveStudentsAttendance(iterable, schoolCode, studentClass, studentSection);
 
 			if (result == null) {
 				map.put("status", "not_ok");
@@ -121,7 +126,7 @@ public class AttendanceController {
 		return results;
 	}
 
-	@RequestMapping(value = "/attendance/getstudent", method = RequestMethod.GET)
+	@RequestMapping(value = "/attendance/getstudents", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
 	@ApiImplicitParams({
@@ -129,12 +134,50 @@ public class AttendanceController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<Student> getBySchoolCodeAndStudentClassAndStudentSection(
-			@RequestParam("school_code") BigInteger schoolCode, @RequestParam("class") int studentClass,
+	public List<Student> getStudentRecords(
+			@RequestParam("school_code") BigInteger schoolCode,
+			@RequestParam("class") int studentClass,
 			@RequestParam("section") int studentSection) {
 
-		List<Student> results = attendanceService.findBySchoolCodeAndStudentClassAndStudentSection(schoolCode,
-				studentClass, studentSection);
+		List<Student> results = attendanceService.getStudentRecords(schoolCode, studentClass, studentSection);
+		return results;
+	}
+	
+	@RequestMapping(value = "/attendance/viewstudents", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public List<ViewAttendanceDTO> getStudentsAttendance(
+			@RequestParam("school_code") BigInteger schoolCode,
+			@RequestParam("class") int studentClass,
+			@RequestParam("section") int studentSection,
+			@RequestParam("date") String date
+			) {
+		Timestamp attendanceDate = Timestamp.valueOf(date.trim() + " 00:00:00");
+		List<ViewAttendanceDTO> results = attendanceService.getStudentsAttendance(schoolCode, studentClass, studentSection, attendanceDate);
+		return results;
+	}
+	
+	@RequestMapping(value = "/attendance/student/self", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public List<StudentAttendance> getStudentsSelf(
+			@RequestParam("student_code") BigInteger studentCode,
+			@RequestParam("date_from") String date_from,
+			@RequestParam("date_to") String date_to
+			) {
+		Timestamp attendanceDateFrom = Timestamp.valueOf(date_from.trim() + " 00:00:00.000");
+		Timestamp attendanceDateTo = Timestamp.valueOf(date_to.trim() + " 00:00:00.000");
+		List<StudentAttendance> results = attendanceService.getStudentsAttendanceSelf(studentCode, attendanceDateFrom, attendanceDateTo);
 		return results;
 	}
 }

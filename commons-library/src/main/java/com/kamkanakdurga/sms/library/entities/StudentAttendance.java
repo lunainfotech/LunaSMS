@@ -5,23 +5,14 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ap_attendance_student")
 public class StudentAttendance {
-	
-	public enum AttendanceStatus{ 
-	    Present, Absent 
-	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,8 +33,7 @@ public class StudentAttendance {
 	private int studentSection;
 	
 	@Column(name = "attendance_status")
-	@Enumerated(EnumType.STRING)
-    private AttendanceStatus attendanceStatus;
+    private String attendanceStatus;
 	
 	@Column(name = "attendance_by")
 	private BigInteger attendanceBy;
@@ -94,11 +84,11 @@ public class StudentAttendance {
 		this.studentSection = studentSection;
 	}
 
-	public AttendanceStatus getAttendanceStatus() {
+	public String getAttendanceStatus() {
 		return attendanceStatus;
 	}
 
-	public void setAttendanceStatus(AttendanceStatus attendanceStatus) {
+	public void setAttendanceStatus(String attendanceStatus) {
 		this.attendanceStatus = attendanceStatus;
 	}
 

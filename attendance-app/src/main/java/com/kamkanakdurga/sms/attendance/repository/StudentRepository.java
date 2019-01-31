@@ -10,8 +10,12 @@ import com.kamkanakdurga.sms.library.entities.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
-	
-	//List<StudentInfo> findBySchoolCodeAndStudentCodeAndClassNoAndSection(BigInteger schoolCode, BigInteger studentCode, int classNo, String section);
-	
-	List<Student> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass, int studentSection);
+
+	// List<StudentInfo>
+	// findBySchoolCodeAndStudentCodeAndClassNoAndSection(BigInteger schoolCode,
+	// BigInteger studentCode, int classNo, String section);
+
+	List<Student> findBySchoolCodeAndStudentClassAndStudentSection(BigInteger schoolCode, int studentClass,
+			int studentSection);
+
 }

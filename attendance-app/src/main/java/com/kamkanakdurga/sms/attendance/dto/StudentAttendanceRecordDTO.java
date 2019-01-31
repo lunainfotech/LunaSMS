@@ -17,15 +17,14 @@ public class StudentAttendanceRecordDTO {
 
 	private String studentLastName;
 
-	@Enumerated(EnumType.STRING)
-	private StudentAttendance.AttendanceStatus attendanceStatus;
+	private String attendanceStatus;
 
 	public StudentAttendanceRecordDTO() {
 
 	}
 
 	public StudentAttendanceRecordDTO(int classNo, String section, int rollNo, String studentFirstName,
-			String studentLastName, StudentAttendance.AttendanceStatus attendanceStatus) {
+			String studentLastName, String attendanceStatus) {
 		super();
 		this.classNo = classNo;
 		this.section = section;
@@ -75,11 +74,11 @@ public class StudentAttendanceRecordDTO {
 		this.studentLastName = studentLastName;
 	}
 
-	public StudentAttendance.AttendanceStatus getAttendanceStatus() {
+	public String getAttendanceStatus() {
 		return attendanceStatus;
 	}
 
-	public void setAttendanceStatus(StudentAttendance.AttendanceStatus attendanceStatus) {
+	public void setAttendanceStatus(String attendanceStatus) {
 		this.attendanceStatus = attendanceStatus;
 	}
 
