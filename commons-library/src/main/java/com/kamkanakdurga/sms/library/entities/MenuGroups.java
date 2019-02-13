@@ -24,6 +24,9 @@ public class MenuGroups {
 	  @Column(name = "url", unique = true, nullable = false)
 	  private String url;
 	  
+	  @Column(name = "icon")
+	  private String icon;
+	  
 	  @Column(name = "sequence", nullable = false)
 	  private int sequence;
 	  
@@ -75,6 +78,14 @@ public class MenuGroups {
 
 	public int getDeleted() {
 		return deleted;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public void setDeleted(int deleted) {

@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.student.dto;
+package com.kamkanakdurga.sms.library.dto;
 
 import java.math.BigInteger;
 

@@ -16,15 +16,19 @@ public class MenuInfoDTO {
 	@ApiModelProperty(position = 3)
 	String url;
 
+	@ApiModelProperty(position = 4)
+	String icon;
+	
 	public MenuInfoDTO() {
 
 	}
 
-	public MenuInfoDTO(int id, String name, String description, String url) {
+	public MenuInfoDTO(int id, String name, String description, String url, String icon) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.url = url;
+		this.icon = icon;
 	}
 
 	public int getId() {
@@ -58,5 +62,11 @@ public class MenuInfoDTO {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	public String getIcon() {
+		return icon;
+	}
 
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 }

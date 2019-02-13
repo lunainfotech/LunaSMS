@@ -13,9 +13,9 @@ import com.kamkanakdurga.sms.library.entities.Role;
 import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.library.entities.User;
 import com.kamkanakdurga.sms.library.exception.CustomException;
+import com.kamkanakdurga.sms.library.repository.StudentRepository;
 import com.kamkanakdurga.sms.library.repository.UserRepository;
 import com.kamkanakdurga.sms.library.security.JwtTokenProvider;
-import com.kamkanakdurga.sms.student.repository.StudentRepository;
 
 @Service
 public class StudentService {
@@ -32,7 +32,7 @@ public class StudentService {
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 
-	public List<Student> getStudentRecordsBySchoolCode(BigInteger studentCode) {
+	public List<Student> getStudentRecordsByStudentCode(BigInteger studentCode) {
 		List<Student> result = studentRepository.findStudentbyStudentCode(studentCode);
 		return result;
 	}

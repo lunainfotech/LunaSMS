@@ -11,6 +11,9 @@ public class UserDetailsDTO {
 
 	@ApiModelProperty(position = 1)
 	List<FirstLevelMenuDTO> menuDetails;
+	
+	@ApiModelProperty(position = 2)
+	List profileDetails;
 
 	public UserResponseDTO getUser() {
 		return user;
@@ -26,6 +29,14 @@ public class UserDetailsDTO {
 
 	public void setMenuDetails(List<FirstLevelMenuDTO> menuDetails) {
 		this.menuDetails = menuDetails;
+	}
+
+	public List getProfileDetails() {
+		return profileDetails;
+	}
+
+	public void setProfileDetails(List profileDetails) {
+		this.profileDetails = profileDetails;
 	}
 
 }

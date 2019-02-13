@@ -67,7 +67,7 @@ public class StudentController {
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public List<Student> getStudentRecordsBySchoolCode(@RequestParam("student_code") BigInteger studentCode) {
-		List<Student> result = studentService.getStudentRecordsBySchoolCode(studentCode);
+		List<Student> result = studentService.getStudentRecordsByStudentCode(studentCode);
 		return result;
 	}
 

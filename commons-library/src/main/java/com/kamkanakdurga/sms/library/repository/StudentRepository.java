@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.student.repository;
+package com.kamkanakdurga.sms.library.repository;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -10,7 +10,7 @@ import com.kamkanakdurga.sms.library.entities.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Integer>  {
 	
-	@Query("SELECT new com.kamkanakdurga.sms.student.dto.StudentDTO("
+	@Query("SELECT new com.kamkanakdurga.sms.library.dto.StudentDTO("
 			+ "S.studentCode, "
 			+ "S.schoolCode, "
 			+ "S.studentFirstName, "

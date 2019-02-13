@@ -17,19 +17,24 @@ public class FirstLevelMenuDTO {
 
 	@ApiModelProperty(position = 3)
 	String url;
-
+	
 	@ApiModelProperty(position = 4)
+	String icon;
+
+	@ApiModelProperty(position = 5)
 	List<MenuInfoDTO> childmenu;
 
 	public FirstLevelMenuDTO() {
 
 	}
 
-	public FirstLevelMenuDTO(int menu_group_id, String name, String description, String url) {
+	public FirstLevelMenuDTO(int menu_group_id, String name, String description, String url, String icon) {
+		super();
 		this.menu_group_id = menu_group_id;
 		this.name = name;
 		this.description = description;
 		this.url = url;
+		this.icon = icon;
 	}
 
 	public int getMenu_group_id() {
@@ -62,6 +67,14 @@ public class FirstLevelMenuDTO {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public List<MenuInfoDTO> getChildmenu() {

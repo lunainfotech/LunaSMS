@@ -32,6 +32,9 @@ public class Menu {
 
 	@Column(name = "url", unique = true, nullable = false)
 	private String url;
+	
+	@Column(name = "icon")
+	private String icon;
 
 	@Column(name = "group_id", nullable = false)
 	private int groupId;
@@ -92,6 +95,14 @@ public class Menu {
 		this.url = url;
 	}
 
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 	public int getGroupId() {
 		return groupId;
 	}
@@ -99,5 +110,7 @@ public class Menu {
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
 	}
+
+
 
 }

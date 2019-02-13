@@ -128,6 +128,7 @@ public class UserController {
 		int roleId = Role.valueOf(user.getRole().get(0).toString()).ordinal();
 		UserDetailsDTO userDetails = new UserDetailsDTO();
 		userDetails.setMenuDetails(menuService.getMenuInfo(roleId));
+		userDetails.setProfileDetails(menuService.getProfileByUser(user));
 		UserResponseDTO userResponseDTO = modelMapper.map(user, UserResponseDTO.class);
 		userDetails.setUser(userResponseDTO);
 		return modelMapper.map(userDetails, UserDetailsDTO.class);

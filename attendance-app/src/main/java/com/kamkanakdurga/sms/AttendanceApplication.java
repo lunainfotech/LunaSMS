@@ -14,7 +14,7 @@ public class AttendanceApplication {
 	@PostConstruct
 	public void init(){
 		// Setting Spring Boot SetTimeZone
-		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Kolkata"));
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT+5.30"));
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(AttendanceApplication.class, args);
