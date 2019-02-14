@@ -11,4 +11,6 @@ include 'event-app'
 include 'exam-app'
 include 'report-app'
 include 'user-app'
+include 'cdn-app'
+
 include 'test-module'

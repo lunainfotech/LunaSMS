@@ -1,78 +1,58 @@
-package com.kamkanakdurga.sms.library.entities;
+package com.kamkanakdurga.sms.exam.dto;
 
 import java.math.BigInteger;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class ExamStudentsFADTO {
 
-@Entity
-@Table(name = "ap_marks_fa")
-public class MarksFA {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
-	
-	@Column(name = "academic_year")
-	private int academicYear;	
-	
-	@Column(name = "school_code")
 	private BigInteger schoolCode;
-	
-	@Column(name = "student_code")
+
 	private BigInteger studentCode;
-	
-	@Column(name = "class")
-	private int classId;
-	
-	@Column(name = "exam")
+
+	private int studentRoll;
+
+	private String studentFirstName;
+
+	private String studentLastName;
+
 	private int exam;
-	
-	@Column(name = "subject")
+
 	private int subject;
-	
-	@Column(name = "term_1")
+
 	private int termOne;
-	
-	@Column(name = "term_1_attendance")
+
 	private int termOneAttendance;
-	
-	@Column(name = "term_2")
+
 	private int termTwo;
-	
-	@Column(name = "term_2_attendance")
+
 	private int termTwoAttendance;
-	
-	@Column(name = "term_3")
+
 	private int termThree;
-	
-	@Column(name = "term_3_attendance")
+
 	private int termThreeAttendance;
-	
-	@Column(name = "term_4")
+
 	private int termFour;
 
-	@Column(name = "term_4_attendance")
 	private int termFourAttendance;
 
-	public BigInteger getId() {
-		return id;
-	}
-
-	public void setId(BigInteger id) {
-		this.id = id;
-	}
-
-	public int getAcademicYear() {
-		return academicYear;
-	}
-
-	public void setAcademicYear(int academicYear) {
-		this.academicYear = academicYear;
+	public ExamStudentsFADTO(BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
+			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo,
+			int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance) {
+		super();
+		this.schoolCode = schoolCode;
+		this.studentCode = studentCode;
+		this.studentRoll = studentRoll;
+		this.studentFirstName = studentFirstName;
+		this.studentLastName = studentLastName;
+		this.exam = exam;
+		this.subject = subject;
+		this.termOne = termOne;
+		this.termOneAttendance = termOneAttendance;
+		this.termTwo = termTwo;
+		this.termTwoAttendance = termTwoAttendance;
+		this.termThree = termThree;
+		this.termThreeAttendance = termThreeAttendance;
+		this.termFour = termFour;
+		this.termFourAttendance = termFourAttendance;
 	}
 
 	public BigInteger getSchoolCode() {
@@ -91,12 +71,28 @@ public class MarksFA {
 		this.studentCode = studentCode;
 	}
 
-	public int getClassId() {
-		return classId;
+	public int getStudentRoll() {
+		return studentRoll;
 	}
 
-	public void setClassId(int classId) {
-		this.classId = classId;
+	public void setStudentRoll(int studentRoll) {
+		this.studentRoll = studentRoll;
+	}
+
+	public String getStudentFirstName() {
+		return studentFirstName;
+	}
+
+	public void setStudentFirstName(String studentFirstName) {
+		this.studentFirstName = studentFirstName;
+	}
+
+	public String getStudentLastName() {
+		return studentLastName;
+	}
+
+	public void setStudentLastName(String studentLastName) {
+		this.studentLastName = studentLastName;
 	}
 
 	public int getExam() {

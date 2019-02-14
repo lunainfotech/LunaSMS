@@ -12,9 +12,6 @@ public class StudentDTO {
 	@ApiModelProperty(position = 1)
 	private BigInteger studentCode;
 	
-	@ApiModelProperty(position = 2)
-	private int studentRoll;
-	
 	@ApiModelProperty(position = 3)
 	private String studentFirstName;
 
@@ -24,19 +21,17 @@ public class StudentDTO {
 	@ApiModelProperty(position = 5)
 	private int studentClass;
 	
-	@ApiModelProperty(position = 6)
-	private int studentSection;
+	@ApiModelProperty(position = 2)
+	private int studentRoll;
 
-	
-	public StudentDTO(BigInteger schoolCode, BigInteger studentCode, String studentFirstName,
-			String studentLastName, int studentClass, int studentSection, int studentRoll) {
+	public StudentDTO(BigInteger schoolCode, BigInteger studentCode, String studentFirstName, String studentLastName,
+			int studentClass, int studentRoll) {
 		super();
 		this.schoolCode = schoolCode;
 		this.studentCode = studentCode;
 		this.studentFirstName = studentFirstName;
 		this.studentLastName = studentLastName;
 		this.studentClass = studentClass;
-		this.studentSection = studentSection;
 		this.studentRoll = studentRoll;
 	}
 
@@ -54,14 +49,6 @@ public class StudentDTO {
 
 	public void setStudentCode(BigInteger studentCode) {
 		this.studentCode = studentCode;
-	}
-
-	public int getStudentRoll() {
-		return studentRoll;
-	}
-
-	public void setStudentRoll(int studentRoll) {
-		this.studentRoll = studentRoll;
 	}
 
 	public String getStudentFirstName() {
@@ -88,13 +75,12 @@ public class StudentDTO {
 		this.studentClass = studentClass;
 	}
 
-	public int getStudentSection() {
-		return studentSection;
+	public int getStudentRoll() {
+		return studentRoll;
 	}
 
-	public void setStudentSection(int studentSection) {
-		this.studentSection = studentSection;
+	public void setStudentRoll(int studentRoll) {
+		this.studentRoll = studentRoll;
 	}
-	
 	
 }

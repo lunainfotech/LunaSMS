@@ -4,25 +4,31 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import com.kamkanakdurga.sms.exam.dto.ExamStudentsFADTO;
+import com.kamkanakdurga.sms.exam.dto.ExamStudentsSADTO;
+import com.kamkanakdurga.sms.exam.dto.ExamSubjectDTO;
 import com.kamkanakdurga.sms.library.entities.MarksFA;
 
 public interface MarksFARepository extends JpaRepository<MarksFA, String>{
-	/*
-
-	@Query("SELECT "
-			+ "S.schoolCode, "
-			+ "S.studentCode, "
-			+ "S.studentFirstName, "
-			+ "S.studentLastName, "
-			+ "S.studentClass, "
-			+ "S.studentSection, "
-			+ "S.studentRoll "
-			+ "FROM MarksFA AS S "
-			+ "WHERE S.schoolCode = ?1 AND S.studentClass = ?2 AND S.studentSection = ?3"
-			)
-	List<MarksFA> findMarksSheetBYSchoolAndClassAndSection(BigInteger studentCode, int studentClass, int studentSection);
-	*/
 	
-	List<MarksFA> findBySchoolCodeAndSubjectAndExam(BigInteger schoolCode, int subject,int exam);
+	@Query("SELECT new com.kamkanakdurga.sms.exam.dto.ExamStudentsSADTO( "
+			+ " FA.id,"
+			+ " FA.schoolCode,"
+			+ " FA.studentCode,"
+			+ " FA.exam,"
+			+ " FA.subject,"
+			+ " FA.termOne,"
+			+ " FA.termOneAttendance,"
+			+ " FA.termTwo,"
+			+ " FA.termTwoAttendance,"
+			+ " FA.termThree,"
+			+ " FA.termThreeAttendance,"
+			+ " FA.termFour,"
+			+ " FA.termFourAttendance )"
+			+ " FROM MarksFA AS FA "
+			+ "WHERE FA.schoolCode = ?1 AND FA.exam = ?2 AND FA.classId = ?3 AND FA.subject = ?4")
+	List<ExamStudentsSADTO> getExamStudentsFA(BigInteger schoolCode, int examId,int classId, int subjectId);
+	
 }
