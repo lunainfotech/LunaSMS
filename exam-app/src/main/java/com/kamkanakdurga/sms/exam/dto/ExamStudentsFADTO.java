@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 public class ExamStudentsFADTO {
 
+	private BigInteger id;
+	
 	private BigInteger schoolCode;
 
 	private BigInteger studentCode;
@@ -34,10 +36,11 @@ public class ExamStudentsFADTO {
 
 	private int termFourAttendance;
 
-	public ExamStudentsFADTO(BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
+	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
 			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo,
 			int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance) {
 		super();
+		this.id = id;
 		this.schoolCode = schoolCode;
 		this.studentCode = studentCode;
 		this.studentRoll = studentRoll;
@@ -53,6 +56,14 @@ public class ExamStudentsFADTO {
 		this.termThreeAttendance = termThreeAttendance;
 		this.termFour = termFour;
 		this.termFourAttendance = termFourAttendance;
+	}
+	
+	public BigInteger getId() {
+		return id;
+	}
+
+	public void setId(BigInteger id) {
+		this.id = id;
 	}
 
 	public BigInteger getSchoolCode() {

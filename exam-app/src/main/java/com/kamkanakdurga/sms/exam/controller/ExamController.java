@@ -18,21 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kamkanakdurga.sms.exam.dto.ExamClassDTO;
-import com.kamkanakdurga.sms.exam.dto.ExamStudentsFADTO;
 import com.kamkanakdurga.sms.exam.dto.ExamSubjectDTO;
-import com.kamkanakdurga.sms.exam.dto.StudentDTO;
 import com.kamkanakdurga.sms.exam.service.ExamService;
 import com.kamkanakdurga.sms.library.entities.Exam;
 import com.kamkanakdurga.sms.library.entities.ExamGrade;
 import com.kamkanakdurga.sms.library.entities.MarksFA;
-import com.kamkanakdurga.sms.library.entities.MarksSA;
-import com.kamkanakdurga.sms.library.entities.SchoolClass;
-import com.kamkanakdurga.sms.library.entities.SchoolSection;
-import com.kamkanakdurga.sms.library.entities.StaffAttendance;
-import com.kamkanakdurga.sms.library.entities.Student;
-import com.kamkanakdurga.sms.library.entities.StudentAttendance;
-import com.kamkanakdurga.sms.library.entities.Subject;
-import com.kamkanakdurga.sms.library.entities.SubjectByExam;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

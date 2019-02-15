@@ -78,6 +78,7 @@ public class ExamService {
 			for(ExamStudentsSADTO marksFa : marksFas) {
 				if(student.getStudentCode().equals(marksFa.getStudentCode())) {
 					ExamStudentsFADTO examStudentsFADTO = new ExamStudentsFADTO(
+							marksFa.getId(),
 							student.getSchoolCode(), 
 							student.getStudentCode(), 
 							student.getStudentRoll(),
@@ -97,6 +98,7 @@ public class ExamService {
 				}
 				else {
 					ExamStudentsFADTO examStudentsFADTO = new ExamStudentsFADTO(
+							BigInteger.valueOf(0),
 							student.getSchoolCode(), 
 							student.getStudentCode(), 
 							student.getStudentRoll(),
@@ -117,6 +119,7 @@ public class ExamService {
 			}
 			if(marksFas.size()==0) {
 				ExamStudentsFADTO examStudentsFADTO = new ExamStudentsFADTO(
+						BigInteger.valueOf(0),
 						student.getSchoolCode(), 
 						student.getStudentCode(), 
 						student.getStudentRoll(),
