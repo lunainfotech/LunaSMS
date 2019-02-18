@@ -13,18 +13,18 @@ import com.kamkanakdurga.sms.library.entities.Student;
 @Repository
 public interface StudentRepository extends JpaRepository <Student, Integer>{
 
-	@Query("SELECT "
-			+ "S.schoolCode, "
-			+ "S.studentCode, "
-			+ "S.studentFirstName, "
-			+ "S.studentLastName, "
-			+ "S.studentClass, "
-			+ "S.studentSection, "
-			+ "S.studentRoll "
-			+ "FROM Student AS S "
-			+ "WHERE S.schoolCode = ?1 AND S.studentClass = ?2 AND S.studentSection = ?3"
-			)
-	List<Student> findStudents(BigInteger schoolCode, int studentClass, int studentSection);
+//	@Query("SELECT "
+//			+ "S.schoolCode, "
+//			+ "S.studentCode, "
+//			+ "S.studentFirstName, "
+//			+ "S.studentLastName, "
+//			+ "S.studentClass, "
+//			+ "S.studentSection, "
+//			+ "S.studentRoll "
+//			+ "FROM Student AS S "
+//			+ "WHERE S.schoolCode = ?1 AND S.studentClass = ?2 AND S.studentSection = ?3"
+//			)
+//	List<Student> findStudents(BigInteger schoolCode, int studentClass, int studentSection);
 	
 	@Query("SELECT new com.kamkanakdurga.sms.exam.dto.StudentDTO( "
 			+ "S.schoolCode, "

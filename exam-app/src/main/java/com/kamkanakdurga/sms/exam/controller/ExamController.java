@@ -23,6 +23,7 @@ import com.kamkanakdurga.sms.exam.service.ExamService;
 import com.kamkanakdurga.sms.library.entities.Exam;
 import com.kamkanakdurga.sms.library.entities.ExamGrade;
 import com.kamkanakdurga.sms.library.entities.MarksFA;
+import com.kamkanakdurga.sms.library.entities.MarksSA;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -138,7 +139,7 @@ public class ExamController {
 		return results;
 	}
 	
-	@RequestMapping(value = "/exam/save/marks", method = RequestMethod.POST)
+	@RequestMapping(value = "/exam/save/famarks", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
 	@ApiImplicitParams({
@@ -146,9 +147,24 @@ public class ExamController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<MarksFA> saveExamStudents(@RequestBody MarksFA[] marksFAArray) {
+	public List<MarksFA> saveExamStudentsFAMarks(@RequestBody MarksFA[] marksFAArray) {
 		Iterable<MarksFA> iterable = Arrays.asList(marksFAArray);
-		 List<MarksFA> results = examService.saveExamStudents(iterable);
+		 List<MarksFA> results = examService.saveExamStudentsFAMarks(iterable);
+		
+		return results;
+	}
+	
+	@RequestMapping(value = "/exam/save/samarks", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public List<MarksSA> saveExamStudentsSAMarks(@RequestBody MarksSA[] marksSAArray) {
+		Iterable<MarksSA> iterable = Arrays.asList(marksSAArray);
+		 List<MarksSA> results = examService.saveExamStudentsSAMarks(iterable);
 		
 		return results;
 	}

@@ -58,6 +58,25 @@ public class ExamStudentsFADTO {
 		this.termFourAttendance = termFourAttendance;
 	}
 	
+	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject,
+			int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree,
+			int termThreeAttendance, int termFour, int termFourAttendance) {
+		super();
+		this.id = id;
+		this.schoolCode = schoolCode;
+		this.studentCode = studentCode;
+		this.exam = exam;
+		this.subject = subject;
+		this.termOne = termOne;
+		this.termOneAttendance = termOneAttendance;
+		this.termTwo = termTwo;
+		this.termTwoAttendance = termTwoAttendance;
+		this.termThree = termThree;
+		this.termThreeAttendance = termThreeAttendance;
+		this.termFour = termFour;
+		this.termFourAttendance = termFourAttendance;
+	}
+	
 	public BigInteger getId() {
 		return id;
 	}

@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.kamkanakdurga.sms.exam.dto.ExamStudentsSADTO;
+import com.kamkanakdurga.sms.exam.dto.ExamStudentsFADTO;
 import com.kamkanakdurga.sms.library.entities.MarksFA;
 
 public interface MarksFARepository extends JpaRepository<MarksFA, String>{
 	
-	@Query("SELECT new com.kamkanakdurga.sms.exam.dto.ExamStudentsSADTO( "
+	@Query("SELECT new com.kamkanakdurga.sms.exam.dto.ExamStudentsFADTO( "
 			+ " FA.id,"
 			+ " FA.schoolCode,"
 			+ " FA.studentCode,"
@@ -27,6 +27,6 @@ public interface MarksFARepository extends JpaRepository<MarksFA, String>{
 			+ " FA.termFourAttendance )"
 			+ " FROM MarksFA AS FA "
 			+ "WHERE FA.schoolCode = ?1 AND FA.exam = ?2 AND FA.classId = ?3 AND FA.subject = ?4")
-	List<ExamStudentsSADTO> getExamStudentsFA(BigInteger schoolCode, int examId,int classId, int subjectId);
+	List<ExamStudentsFADTO> getExamStudentsFA(BigInteger schoolCode, int examId,int classId, int subjectId);
 	
 }
