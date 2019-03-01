@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kamkanakdurga.sms.library.dto.StudentDTO;
 import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.student.service.StudentService;
 
@@ -66,8 +67,8 @@ public class StudentController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<Student> getStudentRecordsBySchoolCode(@RequestParam("student_code") BigInteger studentCode) {
-		List<Student> result = studentService.getStudentRecordsByStudentCode(studentCode);
+	public List<StudentDTO> getStudentRecordsBySchoolCode(@RequestParam("student_code") BigInteger studentCode) {
+		List<StudentDTO> result = studentService.getStudentRecordsByStudentCode(studentCode);
 		return result;
 	}
 

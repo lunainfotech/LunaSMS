@@ -18,7 +18,7 @@ public interface EventRepository extends JpaRepository<Event, Integer>{
 					+ "E.eventContent, "
 					+ "E.eventCategory, "
 					+ "E.eventStatus, "
-					+ "E.eventDateß "
+					+ "E.eventDate "
 					+ "FROM Event AS E "
 			)
 	

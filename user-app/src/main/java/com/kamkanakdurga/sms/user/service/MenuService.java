@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kamkanakdurga.sms.library.constants.RoleConstants;
+import com.kamkanakdurga.sms.library.dto.StudentDTO;
 import com.kamkanakdurga.sms.library.entities.Role;
+import com.kamkanakdurga.sms.library.entities.School;
 import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.library.entities.User;
+import com.kamkanakdurga.sms.library.repository.SchoolRepository;
 import com.kamkanakdurga.sms.library.repository.StudentRepository;
 import com.kamkanakdurga.sms.user.dto.FirstLevelMenuDTO;
 import com.kamkanakdurga.sms.user.repository.MenuRepository;
@@ -23,6 +26,9 @@ public class MenuService {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private SchoolRepository schoolRepository;
 
 	public List<FirstLevelMenuDTO> getMenuGroupIdByRoleId(int roleId) {
 		return menuRepository.getMenuGroupDetailsByRoleId(roleId);
@@ -40,7 +46,10 @@ public class MenuService {
 
 	public List getProfileByUser(User user) {
 		if(user.getRole().get(0).toString() == RoleConstants.ROLE_STUDENT) {
-			List<Student> result = studentRepository.findStudentbyStudentCode(new BigInteger(user.getUsername()));
+			List<StudentDTO> result = studentRepository.findStudentbyStudentCode(new BigInteger(user.getUsername()));
+			return result;
+		}else if(user.getRole().get(0).toString() == RoleConstants.ROLE_SCHOOL) {
+			List<School> result = schoolRepository.findSchoolbySchoolCode(new BigInteger(user.getUsername()));
 			return result;
 		}
 		

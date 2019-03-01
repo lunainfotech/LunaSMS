@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kamkanakdurga.sms.library.dto.StudentDTO;
 import com.kamkanakdurga.sms.library.entities.Role;
 import com.kamkanakdurga.sms.library.entities.Student;
 import com.kamkanakdurga.sms.library.entities.User;
@@ -32,8 +33,8 @@ public class StudentService {
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 
-	public List<Student> getStudentRecordsByStudentCode(BigInteger studentCode) {
-		List<Student> result = studentRepository.findStudentbyStudentCode(studentCode);
+	public List<StudentDTO> getStudentRecordsByStudentCode(BigInteger studentCode) {
+		List<StudentDTO> result = studentRepository.findStudentbyStudentCode(studentCode);
 		return result;
 	}
 

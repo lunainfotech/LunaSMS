@@ -1,94 +1,90 @@
-package com.kamkanakdurga.sms.library.entities;
+package com.kamkanakdurga.sms.library.dto;
 
 import java.math.BigInteger;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "ap_school")
-public class School {
+import io.swagger.annotations.ApiModelProperty;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SchoolDTO {
+	
+	@ApiModelProperty(position = 0)
 	private Integer id;
-	
-	@Column(name = "district_code")
+
+	@ApiModelProperty(position = 1)
 	private int districtCode;
-	
-	@Column(name = "district_name")
+
+	@ApiModelProperty(position = 2)
 	private String districtName;
-	
-	@Column(name = "block_code")
+
+	@ApiModelProperty(position = 3)
 	private int blockCode;
-	
-	@Column(name = "block_name")
+
+	@ApiModelProperty(position = 4)
 	private String blockName;
-	
-	@Column(name = "school_code")
+
+	@ApiModelProperty(position = 5)
 	private BigInteger schoolCode;
-	
-	@Column(name = "school_name")
+
+	@ApiModelProperty(position = 6)
 	private String schoolName;
 	
-	@Column(name = "school_area")
+	@ApiModelProperty(position = 7)
 	private String schoolArea;
 	
-	@Column(name = "school_address")
+	@ApiModelProperty(position = 8)
 	private String schoolAddress;
 	
-	@Column(name = "school_pin")
+	@ApiModelProperty(position = 9)
 	private int schoolPin;
 	
-	@Column(name = "school_contact_name")
+	@ApiModelProperty(position = 10)
 	private String schoolContactName;
 	
-	@Column(name = "school_contact_number")
+	@ApiModelProperty(position = 11)
 	private String schoolContactNumber;
 	
-	@Column(name = "school_email_id")
+	@ApiModelProperty(position = 12)
 	private String schoolEmailId;
 	
-	@Column(name = "school_latitude")
+	@ApiModelProperty(position = 13)
 	private int schoolLatitude;
 	
-	@Column(name = "school_longitude")
+	@ApiModelProperty(position = 14)
 	private int schoolLongitude;
 	
-	@Column(name = "school_of_inc")
+	@ApiModelProperty(position = 15)
 	private String schoolOfInc;
 	
-	@Column(name = "school_max_student")
+	@ApiModelProperty(position = 16)
 	private int schoolMaxStudent;
 	
-	@Column(name = "school_max_teacher")
+	@ApiModelProperty(position = 17)
 	private int schoolMaxTeacher;
 	
-	@Column(name = "school_max_staff")
+	@ApiModelProperty(position = 18)
 	private int schoolMaxStaff;
 	
-	@Column(name = "school_type")
+	@ApiModelProperty(position = 19)
 	private String schoolType;
 	
-	@Column(name = "school_sub_class")
+	@ApiModelProperty(position = 20)
 	private String schoolSubClass;
 	
-	public School() {
-		
+	public SchoolDTO() {
+
 	}
 
-
-
-	public School(Integer id, int districtCode, String districtName, int blockCode, String blockName,
+	
+	public SchoolDTO(Integer id, int districtCode, String districtName, int blockCode, String blockName,
 			BigInteger schoolCode, String schoolName, String schoolArea, String schoolAddress, int schoolPin,
 			String schoolContactName, String schoolContactNumber, String schoolEmailId, int schoolLatitude,
 			int schoolLongitude, String schoolOfInc, int schoolMaxStudent, int schoolMaxTeacher, int schoolMaxStaff,
 			String schoolType, String schoolSubClass) {
-		super();
+		//super();
 		this.id = id;
 		this.districtCode = districtCode;
 		this.districtName = districtName;
@@ -111,245 +107,174 @@ public class School {
 		this.schoolType = schoolType;
 		this.schoolSubClass = schoolSubClass;
 	}
-
-
-
-	public School(Integer id, int districtCode, int blockCode, BigInteger schoolCode, String schoolName,
-			String schoolArea, String schoolAddress, int schoolPin, String schoolContactName,
-			String schoolContactNumber, String schoolEmailId, int schoolLatitude, int schoolLongitude,
-			String schoolOfInc, int schoolMaxStudent, int schoolMaxTeacher, int schoolMaxStaff, String schoolType,
-			String schoolSubClass) {
-		super();
-		this.id = id;
-		this.districtCode = districtCode;
-		this.blockCode = blockCode;
-		this.schoolCode = schoolCode;
-		this.schoolName = schoolName;
-		this.schoolArea = schoolArea;
-		this.schoolAddress = schoolAddress;
-		this.schoolPin = schoolPin;
-		this.schoolContactName = schoolContactName;
-		this.schoolContactNumber = schoolContactNumber;
-		this.schoolEmailId = schoolEmailId;
-		this.schoolLatitude = schoolLatitude;
-		this.schoolLongitude = schoolLongitude;
-		this.schoolOfInc = schoolOfInc;
-		this.schoolMaxStudent = schoolMaxStudent;
-		this.schoolMaxTeacher = schoolMaxTeacher;
-		this.schoolMaxStaff = schoolMaxStaff;
-		this.schoolType = schoolType;
-		this.schoolSubClass = schoolSubClass;
-	}
-
-
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public int getDistrictCode() {
 		return districtCode;
 	}
 
-
 	public void setDistrictCode(int districtCode) {
 		this.districtCode = districtCode;
 	}
-
 
 	public String getDistrictName() {
 		return districtName;
 	}
 
-
 	public void setDistrictName(String districtName) {
 		this.districtName = districtName;
 	}
-
 
 	public int getBlockCode() {
 		return blockCode;
 	}
 
-
 	public void setBlockCode(int blockCode) {
 		this.blockCode = blockCode;
 	}
-
 
 	public String getBlockName() {
 		return blockName;
 	}
 
-
 	public void setBlockName(String blockName) {
 		this.blockName = blockName;
 	}
-
 
 	public BigInteger getSchoolCode() {
 		return schoolCode;
 	}
 
-
 	public void setSchoolCode(BigInteger schoolCode) {
 		this.schoolCode = schoolCode;
 	}
-
 
 	public String getSchoolName() {
 		return schoolName;
 	}
 
-
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-
 
 	public String getSchoolArea() {
 		return schoolArea;
 	}
 
-
 	public void setSchoolArea(String schoolArea) {
 		this.schoolArea = schoolArea;
 	}
-
 
 	public String getSchoolAddress() {
 		return schoolAddress;
 	}
 
-
 	public void setSchoolAddress(String schoolAddress) {
 		this.schoolAddress = schoolAddress;
 	}
-
 
 	public int getSchoolPin() {
 		return schoolPin;
 	}
 
-
 	public void setSchoolPin(int schoolPin) {
 		this.schoolPin = schoolPin;
 	}
-
 
 	public String getSchoolContactName() {
 		return schoolContactName;
 	}
 
-
 	public void setSchoolContactName(String schoolContactName) {
 		this.schoolContactName = schoolContactName;
 	}
-
 
 	public String getSchoolContactNumber() {
 		return schoolContactNumber;
 	}
 
-
 	public void setSchoolContactNumber(String schoolContactNumber) {
 		this.schoolContactNumber = schoolContactNumber;
 	}
-
 
 	public String getSchoolEmailId() {
 		return schoolEmailId;
 	}
 
-
 	public void setSchoolEmailId(String schoolEmailId) {
 		this.schoolEmailId = schoolEmailId;
 	}
-
 
 	public int getSchoolLatitude() {
 		return schoolLatitude;
 	}
 
-
 	public void setSchoolLatitude(int schoolLatitude) {
 		this.schoolLatitude = schoolLatitude;
 	}
-
 
 	public int getSchoolLongitude() {
 		return schoolLongitude;
 	}
 
-
 	public void setSchoolLongitude(int schoolLongitude) {
 		this.schoolLongitude = schoolLongitude;
 	}
-
 
 	public String getSchoolOfInc() {
 		return schoolOfInc;
 	}
 
-
 	public void setSchoolOfInc(String schoolOfInc) {
 		this.schoolOfInc = schoolOfInc;
 	}
-
 
 	public int getSchoolMaxStudent() {
 		return schoolMaxStudent;
 	}
 
-
 	public void setSchoolMaxStudent(int schoolMaxStudent) {
 		this.schoolMaxStudent = schoolMaxStudent;
 	}
-
 
 	public int getSchoolMaxTeacher() {
 		return schoolMaxTeacher;
 	}
 
-
 	public void setSchoolMaxTeacher(int schoolMaxTeacher) {
 		this.schoolMaxTeacher = schoolMaxTeacher;
 	}
-
 
 	public int getSchoolMaxStaff() {
 		return schoolMaxStaff;
 	}
 
-
 	public void setSchoolMaxStaff(int schoolMaxStaff) {
 		this.schoolMaxStaff = schoolMaxStaff;
 	}
-
 
 	public String getSchoolType() {
 		return schoolType;
 	}
 
-
 	public void setSchoolType(String schoolType) {
 		this.schoolType = schoolType;
 	}
-
 
 	public String getSchoolSubClass() {
 		return schoolSubClass;
 	}
 
-
 	public void setSchoolSubClass(String schoolSubClass) {
 		this.schoolSubClass = schoolSubClass;
 	}
 
+	
 }

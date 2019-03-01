@@ -1,6 +1,7 @@
 package com.kamkanakdurga.sms.exam.dto;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class ExamStudentsFADTO {
 
@@ -19,26 +20,71 @@ public class ExamStudentsFADTO {
 	private int exam;
 
 	private int subject;
-
+	
 	private int termOne;
 
 	private int termOneAttendance;
+	
+	private int termOneMarks;
 
 	private int termTwo;
 
 	private int termTwoAttendance;
+	
+	private int termTwoMarks;
 
 	private int termThree;
 
 	private int termThreeAttendance;
+	
+	private int termThreeMarks;
 
 	private int termFour;
 
 	private int termFourAttendance;
+	
+	private int termFourMarks;
 
-	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
-			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo,
-			int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance) {
+	TermFADTO examTerm;
+
+	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll,
+			String studentFirstName, String studentLastName, int exam, int subject, TermFADTO examTerm) {
+		super();
+		this.id = id;
+		this.schoolCode = schoolCode;
+		this.studentCode = studentCode;
+		this.studentRoll = studentRoll;
+		this.studentFirstName = studentFirstName;
+		this.studentLastName = studentLastName;
+		this.exam = exam;
+		this.subject = subject;
+		this.examTerm = examTerm;
+	}
+
+	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode,
+			int exam, int subject, int termOne, int termOneAttendance,
+			int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance, int termFour,
+			int termFourAttendance) {
+		super();
+		this.id = id;
+		this.schoolCode = schoolCode;
+		this.studentCode = studentCode;
+		this.exam = exam;
+		this.subject = subject;
+		this.termOne = termOne;
+		this.termOneAttendance = termOneAttendance;
+		this.termTwo = termTwo;
+		this.termTwoAttendance = termTwoAttendance;
+		this.termThree = termThree;
+		this.termThreeAttendance = termThreeAttendance;
+		this.termFour = termFour;
+		this.termFourAttendance = termFourAttendance;
+	}
+
+	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll,
+			String studentFirstName, String studentLastName, int exam, int subject, int termOne, int termOneAttendance,
+			int termOneMarks, int termTwo, int termTwoAttendance, int termTwoMarks, int termThree,
+			int termThreeAttendance, int termThreeMarks, int termFour, int termFourAttendance, int termFourMarks) {
 		super();
 		this.id = id;
 		this.schoolCode = schoolCode;
@@ -50,33 +96,18 @@ public class ExamStudentsFADTO {
 		this.subject = subject;
 		this.termOne = termOne;
 		this.termOneAttendance = termOneAttendance;
+		this.termOneMarks = termOneMarks;
 		this.termTwo = termTwo;
 		this.termTwoAttendance = termTwoAttendance;
+		this.termTwoMarks = termTwoMarks;
 		this.termThree = termThree;
 		this.termThreeAttendance = termThreeAttendance;
+		this.termThreeMarks = termThreeMarks;
 		this.termFour = termFour;
 		this.termFourAttendance = termFourAttendance;
+		this.termFourMarks = termFourMarks;
 	}
-	
-	public ExamStudentsFADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject,
-			int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree,
-			int termThreeAttendance, int termFour, int termFourAttendance) {
-		super();
-		this.id = id;
-		this.schoolCode = schoolCode;
-		this.studentCode = studentCode;
-		this.exam = exam;
-		this.subject = subject;
-		this.termOne = termOne;
-		this.termOneAttendance = termOneAttendance;
-		this.termTwo = termTwo;
-		this.termTwoAttendance = termTwoAttendance;
-		this.termThree = termThree;
-		this.termThreeAttendance = termThreeAttendance;
-		this.termFour = termFour;
-		this.termFourAttendance = termFourAttendance;
-	}
-	
+
 	public BigInteger getId() {
 		return id;
 	}
@@ -157,6 +188,14 @@ public class ExamStudentsFADTO {
 		this.termOneAttendance = termOneAttendance;
 	}
 
+	public int getTermOneMarks() {
+		return termOneMarks;
+	}
+
+	public void setTermOneMarks(int termOneMarks) {
+		this.termOneMarks = termOneMarks;
+	}
+
 	public int getTermTwo() {
 		return termTwo;
 	}
@@ -171,6 +210,14 @@ public class ExamStudentsFADTO {
 
 	public void setTermTwoAttendance(int termTwoAttendance) {
 		this.termTwoAttendance = termTwoAttendance;
+	}
+
+	public int getTermTwoMarks() {
+		return termTwoMarks;
+	}
+
+	public void setTermTwoMarks(int termTwoMarks) {
+		this.termTwoMarks = termTwoMarks;
 	}
 
 	public int getTermThree() {
@@ -189,6 +236,14 @@ public class ExamStudentsFADTO {
 		this.termThreeAttendance = termThreeAttendance;
 	}
 
+	public int getTermThreeMarks() {
+		return termThreeMarks;
+	}
+
+	public void setTermThreeMarks(int termThreeMarks) {
+		this.termThreeMarks = termThreeMarks;
+	}
+
 	public int getTermFour() {
 		return termFour;
 	}
@@ -205,4 +260,20 @@ public class ExamStudentsFADTO {
 		this.termFourAttendance = termFourAttendance;
 	}
 
+	public int getTermFourMarks() {
+		return termFourMarks;
+	}
+
+	public void setTermFourMarks(int termFourMarks) {
+		this.termFourMarks = termFourMarks;
+	}
+
+	public TermFADTO getExamTerm() {
+		return examTerm;
+	}
+
+	public void setExamTerm(TermFADTO examTerm) {
+		this.examTerm = examTerm;
+	}
+	
 }

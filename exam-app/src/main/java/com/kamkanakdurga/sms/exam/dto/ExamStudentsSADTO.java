@@ -23,50 +23,74 @@ public class ExamStudentsSADTO {
 	private int termOne;
 
 	private int termOneAttendance;
+	
+	private int termOneMarks;
 
 	private int termTwo;
 
 	private int termTwoAttendance;
+	
+	private int termTwoMarks;
 
 	private int termThree;
 
 	private int termThreeAttendance;
+	
+	private int termThreeMarks;
 
 	private int termFour;
 
 	private int termFourAttendance;
 	
+	private int termFourMarks;
+	
 	private int termFive;
 	
 	private int termFiveAttendance;
+	
+	private int termFiveMarks;
 
 	private int termSix;
 	
 	private int termSixAttendance;
+	
+	private int termSixMarks;
 
 	private int termSeven;
 	
 	private int termSevenAttendance;
+	
+	private int termSevenMarks;
 
 	private int termEight;
 	
 	private int termEightAttendance;
+	
+	private int termEightMarks;
 
 	private int termNine;
 	
 	private int termNineAttendance;
+	
+	private int termNineMarks;
 
 	private int termTen;
 	
 	private int termTenAttendance;
+	
+	private int termTenMarks;
 
 	private int termEleven;
 	
 	private int termElevenAttendance;
+	
+	private int termElevenMarks;
 
 	private int termTwelve;
 	
 	private int termTwelveAttendance;
+	
+	private int termTwelveMarks;
 	
 	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject, int termOne, int termOneAttendance) {
 		super();
@@ -80,7 +104,7 @@ public class ExamStudentsSADTO {
 	}
 	
 	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
-			String studentLastName, int exam, int subject, int termOne, int termOneAttendance) {
+			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termOneMarks) {
 		super();
 		this.id = id;
 		this.schoolCode = schoolCode;
@@ -92,6 +116,7 @@ public class ExamStudentsSADTO {
 		this.subject = subject;
 		this.termOne = termOne;
 		this.termOneAttendance = termOneAttendance;
+		this.termOneMarks = termOneMarks;
 	}
 	
 	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance) {
@@ -109,8 +134,12 @@ public class ExamStudentsSADTO {
 		this.termThreeAttendance = termThreeAttendance;
 	}
 	
-	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
-			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance) {
+
+	
+	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll,
+			String studentFirstName, String studentLastName, int exam, int subject, int termOne, int termOneAttendance,
+			int termOneMarks, int termTwo, int termTwoAttendance, int termTwoMarks, int termThree,
+			int termThreeAttendance, int termThreeMarks) {
 		super();
 		this.id = id;
 		this.schoolCode = schoolCode;
@@ -122,12 +151,15 @@ public class ExamStudentsSADTO {
 		this.subject = subject;
 		this.termOne = termOne;
 		this.termOneAttendance = termOneAttendance;
+		this.termOneMarks = termOneMarks;
 		this.termTwo = termTwo;
 		this.termTwoAttendance = termTwoAttendance;
+		this.termTwoMarks = termTwoMarks;
 		this.termThree = termThree;
 		this.termThreeAttendance = termThreeAttendance;
+		this.termThreeMarks = termThreeMarks;
 	}
-	
+
 	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance, int termFive, int termFiveAttendance) {
 		super();
 		this.id = id;
@@ -147,8 +179,13 @@ public class ExamStudentsSADTO {
 		this.termFiveAttendance = termFiveAttendance;
 	}
 	
-	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
-			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance, int termFive, int termFiveAttendance) {
+
+	
+	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll,
+			String studentFirstName, String studentLastName, int exam, int subject, int termOne, int termOneAttendance,
+			int termOneMarks, int termTwo, int termTwoAttendance, int termTwoMarks, int termThree,
+			int termThreeAttendance, int termThreeMarks, int termFour, int termFourAttendance, int termFourMarks,
+			int termFive, int termFiveAttendance, int termFiveMarks) {
 		super();
 		this.id = id;
 		this.schoolCode = schoolCode;
@@ -160,16 +197,21 @@ public class ExamStudentsSADTO {
 		this.subject = subject;
 		this.termOne = termOne;
 		this.termOneAttendance = termOneAttendance;
+		this.termOneMarks = termOneMarks;
 		this.termTwo = termTwo;
 		this.termTwoAttendance = termTwoAttendance;
+		this.termTwoMarks = termTwoMarks;
 		this.termThree = termThree;
 		this.termThreeAttendance = termThreeAttendance;
+		this.termThreeMarks = termThreeMarks;
 		this.termFour = termFour;
 		this.termFourAttendance = termFourAttendance;
+		this.termFourMarks = termFourMarks;
 		this.termFive = termFive;
 		this.termFiveAttendance = termFiveAttendance;
+		this.termFiveMarks = termFiveMarks;
 	}
-	
+
 	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance, int termFive, int termFiveAttendance, int termSix, int termSixAttendance) {
 		super();
 		this.id = id;
@@ -191,8 +233,14 @@ public class ExamStudentsSADTO {
 		this.termSixAttendance = termSixAttendance;
 	}
 	
-	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll, String studentFirstName,
-			String studentLastName, int exam, int subject, int termOne, int termOneAttendance, int termTwo, int termTwoAttendance, int termThree, int termThreeAttendance, int termFour, int termFourAttendance, int termFive, int termFiveAttendance, int termSix, int termSixAttendance) {
+
+	
+	public ExamStudentsSADTO(BigInteger id, BigInteger schoolCode, BigInteger studentCode, int studentRoll,
+			String studentFirstName, String studentLastName, int exam, int subject, int termOne, int termOneAttendance,
+			int termOneMarks, int termTwo, int termTwoAttendance, int termTwoMarks, int termThree,
+			int termThreeAttendance, int termThreeMarks, int termFour, int termFourAttendance, int termFourMarks,
+			int termFive, int termFiveAttendance, int termFiveMarks, int termSix, int termSixAttendance,
+			int termSixMarks) {
 		super();
 		this.id = id;
 		this.schoolCode = schoolCode;
@@ -204,18 +252,24 @@ public class ExamStudentsSADTO {
 		this.subject = subject;
 		this.termOne = termOne;
 		this.termOneAttendance = termOneAttendance;
+		this.termOneMarks = termOneMarks;
 		this.termTwo = termTwo;
 		this.termTwoAttendance = termTwoAttendance;
+		this.termTwoMarks = termTwoMarks;
 		this.termThree = termThree;
 		this.termThreeAttendance = termThreeAttendance;
+		this.termThreeMarks = termThreeMarks;
 		this.termFour = termFour;
 		this.termFourAttendance = termFourAttendance;
+		this.termFourMarks = termFourMarks;
 		this.termFive = termFive;
 		this.termFiveAttendance = termFiveAttendance;
+		this.termFiveMarks = termFiveMarks;
 		this.termSix = termSix;
 		this.termSixAttendance = termSixAttendance;
+		this.termSixMarks = termSixMarks;
 	}
-	
+
 	public BigInteger getId() {
 		return id;
 	}
