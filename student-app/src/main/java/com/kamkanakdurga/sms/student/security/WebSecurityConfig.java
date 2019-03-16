@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// No session will be created or used by spring security
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http.authorizeRequests().antMatchers("/student/heartbeat").permitAll().antMatchers("/student/district")
+		http.authorizeRequests().antMatchers("/student/heartbeat").permitAll().antMatchers("/student/**")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/users/signin/*")
 				.failureUrl("/users/signin?error").permitAll().and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/users/logout")).logoutSuccessUrl("/users/signin");

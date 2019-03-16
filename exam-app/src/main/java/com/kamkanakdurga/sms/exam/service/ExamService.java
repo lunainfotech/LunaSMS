@@ -819,5 +819,158 @@ public class ExamService {
 		List<MarksSA> result = marksSARepository.saveAll(marksSAArray);
 		return result;
 	}
+	
+	public List<DisplayFADTO> getExamStudentsFA1(BigInteger schoolCode, int examId, int classId, int subjectId) {
+		List<DisplayFADTO> results = new ArrayList<DisplayFADTO>();
+		List<StudentDTO> students = studentRepository.getStudentByClass(schoolCode, classId);
+		List<ExamStudentsFADTO> marksFas = marksFARepository.getExamStudentsFA(schoolCode, examId, classId, subjectId);
+		
+		for(StudentDTO student : students) {
+			
+			for(ExamStudentsFADTO marksFa : marksFas) {
+				if(student.getStudentCode().equals(marksFa.getStudentCode())) {
+					
+					TermInfoDTO termOne 	= new TermInfoDTO(
+								marksFa.getTermOne(), 
+								marksFa.getTermOneAttendance(),
+								10
+							);
+					
+					TermInfoDTO termTwo	= new TermInfoDTO(
+								marksFa.getTermTwo(), 
+								marksFa.getTermTwoAttendance(), 
+								10
+							);
+					
+					TermInfoDTO termThree  = new TermInfoDTO(
+								marksFa.getTermThree(), 
+								marksFa.getTermThreeAttendance(), 
+								10
+							);
+					
+					TermInfoDTO termFour	= new TermInfoDTO(
+								marksFa.getTermFour(), 
+								marksFa.getTermFourAttendance(),
+								20
+							);
+					
+					TermFADTO termFA = new TermFADTO(
+								termOne,
+								termTwo,
+								termThree,
+								termFour
+							);
+					
+					DisplayFADTO examStudentsFADTO = new DisplayFADTO(
+							marksFa.getId(),
+							student.getSchoolCode(), 
+							student.getStudentCode(), 
+							student.getStudentRoll(),
+							student.getStudentFirstName(), 
+							student.getStudentLastName(), 
+							marksFa.getExam(), 
+							marksFa.getSubject(), 
+							termFA
+							);
+					results.add(examStudentsFADTO);
+					
+					break;
+				}
+				else {
+					
+					TermInfoDTO termOne 	= new TermInfoDTO(
+							-1, 
+							1,
+							10
+						);
+				
+					TermInfoDTO termTwo	= new TermInfoDTO(
+							-1, 
+							1, 
+							10
+						);
+					
+					TermInfoDTO termThree  = new TermInfoDTO(
+							-1, 
+							1, 
+							10
+						);
+					
+					TermInfoDTO termFour	= new TermInfoDTO(
+							-1, 
+							1,
+							20
+						);					
+					
+					TermFADTO termFA = new TermFADTO(
+							termOne,
+							termTwo,
+							termThree,
+							termFour
+						);
+					
+					DisplayFADTO examStudentsFADTO = new DisplayFADTO(
+							BigInteger.valueOf(0),
+							student.getSchoolCode(), 
+							student.getStudentCode(), 
+							student.getStudentRoll(),
+							student.getStudentFirstName(), 
+							student.getStudentLastName(), 
+							marksFa.getExam(), 
+							marksFa.getSubject(), 
+							termFA
+						);
+					results.add(examStudentsFADTO);
+					break;
+				}
+			}
+			if(marksFas.size()==0) {
+				TermInfoDTO termOne 	= new TermInfoDTO(
+						-1, 
+						1,
+						10
+					);
+			
+				TermInfoDTO termTwo	= new TermInfoDTO(
+						-1, 
+						1, 
+						10
+					);
+				
+				TermInfoDTO termThree  = new TermInfoDTO(
+						-1, 
+						1, 
+						10
+					);
+				
+				TermInfoDTO termFour	= new TermInfoDTO(
+						-1, 
+						1,
+						20
+					);					
+				
+				TermFADTO termFA = new TermFADTO(
+						termOne,
+						termTwo,
+						termThree,
+						termFour
+					);
+				
+				DisplayFADTO examStudentsFADTO = new DisplayFADTO(
+						BigInteger.valueOf(0),
+						student.getSchoolCode(), 
+						student.getStudentCode(), 
+						student.getStudentRoll(),
+						student.getStudentFirstName(), 
+						student.getStudentLastName(), 
+						examId, 
+						subjectId, 
+						termFA
+						);
+				results.add(examStudentsFADTO);
+			}
+		}
+		return results;
+	}
 
 }

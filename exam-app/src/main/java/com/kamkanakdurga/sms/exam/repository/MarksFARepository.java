@@ -29,4 +29,21 @@ public interface MarksFARepository extends JpaRepository<MarksFA, String>{
 			+ "WHERE FA.schoolCode = ?1 AND FA.exam = ?2 AND FA.classId = ?3 AND FA.subject = ?4")
 	List<ExamStudentsFADTO> getExamStudentsFA(BigInteger schoolCode, int examId,int classId, int subjectId);
 	
+	@Query("SELECT new com.kamkanakdurga.sms.exam.dto.ExamStudentsFADTO( "
+			+ " FA.id,"
+			+ " FA.schoolCode,"
+			+ " FA.studentCode,"
+			+ " FA.exam,"
+			+ " FA.subject,"
+			+ " FA.termOne,"
+			+ " FA.termOneAttendance,"
+			+ " FA.termTwo,"
+			+ " FA.termTwoAttendance,"
+			+ " FA.termThree,"
+			+ " FA.termThreeAttendance,"
+			+ " FA.termFour,"
+			+ " FA.termFourAttendance )"
+			+ " FROM MarksFA AS FA "
+			+ "WHERE FA.schoolCode = ?1 AND FA.studentCode = ?2 AND FA.exam = ?3 AND FA.classId = ?4 AND FA.subject = ?5")
+	ExamStudentsFADTO getExamStudentsFA1(BigInteger schoolCode,BigInteger studentCode, int examId,int classId, int subjectId);
 }

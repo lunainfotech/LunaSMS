@@ -67,11 +67,27 @@ public class StudentController {
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
-	public List<StudentDTO> getStudentRecordsBySchoolCode(@RequestParam("student_code") BigInteger studentCode) {
+	public List<StudentDTO> getStudentRecordsByStudentCode(@RequestParam("student_code") BigInteger studentCode) {
 		List<StudentDTO> result = studentService.getStudentRecordsByStudentCode(studentCode);
 		return result;
 	}
-
+	
+	@GetMapping(value = "/students")
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
+			+ "or hasRole('ROLE_PARENT') " + "or hasRole('ROLE_MEO') " + "or hasRole('ROLE_DEO') "
+			+ "or hasRole('ROLE_GOVT') ")
+	@ApiOperation(value = "Geting menu details of user")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public List<StudentDTO> getStudentRecordsBySchoolCode(@RequestParam("school_code") BigInteger schoolCode, @RequestParam("class") Integer studentClass) {
+		List<StudentDTO> result = studentService.getStudentRecordsBySchoolCode(schoolCode, studentClass);
+		return result;
+	}
+	
 	@PostMapping(value = "/save")
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
 	@ApiOperation(value = "Geting menu details of user")

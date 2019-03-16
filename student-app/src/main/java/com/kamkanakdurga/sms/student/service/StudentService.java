@@ -38,6 +38,11 @@ public class StudentService {
 		return result;
 	}
 
+	public List<StudentDTO> getStudentRecordsBySchoolCode(BigInteger schoolCode, Integer studentClass) {
+		List<StudentDTO> result = studentRepository.findStudentbySchoolCode(schoolCode, studentClass);
+		return result;
+	}
+	
 	public Student saveStudentRecord(Student studentInfo) {
 
 		User user = new User();

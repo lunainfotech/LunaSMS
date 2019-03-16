@@ -1,6 +1,7 @@
 package com.kamkanakdurga.sms.event.controller;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kamkanakdurga.sms.event.dto.HolidayDTO;
+import com.kamkanakdurga.sms.event.dto.NoticeDTO;
 import com.kamkanakdurga.sms.library.entities.Event;
 import com.kamkanakdurga.sms.library.entities.EventAttachment;
 import com.kamkanakdurga.sms.library.entities.EventCategory;
@@ -130,5 +132,21 @@ public class EventController {
 			Event result = eventService.saveEvent(eventInfo);
 			return result;
 		
+	}
+	
+	@GetMapping(value = "/notice")
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER') " + "or hasRole('ROLE_STUDENT') "
+			+ "or hasRole('ROLE_PARENT') " + "or hasRole('ROLE_MEO') " + "or hasRole('ROLE_DEO') "
+			+ "or hasRole('ROLE_GOVT') ")
+	@ApiOperation(value = "Geting school record")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public Page<NoticeDTO> getNoticeRecords(@RequestParam("school_code") BigInteger schoolCode, @RequestParam("page") int page, @RequestParam("records") int records) {
+		Page<NoticeDTO> noticeRecords = eventService.findAllNoticeRecords(schoolCode,page, records);
+		return noticeRecords;
 	}
 }

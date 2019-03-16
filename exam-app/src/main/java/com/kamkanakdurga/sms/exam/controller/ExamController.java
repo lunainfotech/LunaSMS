@@ -139,6 +139,25 @@ public class ExamController {
 		return results;
 	}
 	
+	@RequestMapping(value = "/exam/get_allstudents", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
+			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "Authorization", value = "Authorization token", required = true, dataType = "string", paramType = "header") })
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Something went wrong"),
+			@ApiResponse(code = 403, message = "Access denied"),
+			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
+	public List getExamAllStudents(@RequestParam("school_code") BigInteger schoolCode, @RequestParam("exam_id") int examId, @RequestParam("class_id") int classId, @RequestParam("subject_id") int subjectId) {
+		List results = null;
+		if(examId <= 4) {
+			results = examService.getExamStudentsFA1(schoolCode, examId, classId, subjectId);
+		}
+		else {
+			results = examService.getExamStudentsSA(schoolCode, examId, classId, subjectId);
+		}
+		return results;
+	}
+	
 	@RequestMapping(value = "/exam/save/famarks", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ROLE_SUPER_ADMIN') " + "or hasRole('ROLE_ADMIN') " + "or hasRole('ROLE_SCHOOL') "
 			+ "or hasRole('ROLE_PRINCIPAL') " + "or hasRole('ROLE_TEACHER')")
@@ -148,7 +167,7 @@ public class ExamController {
 			@ApiResponse(code = 403, message = "Access denied"),
 			@ApiResponse(code = 500, message = "Expired or invalid JWT token") })
 	public List<MarksFA> saveExamStudentsFAMarks(@RequestBody MarksFA[] marksFAArray) {
-		Iterable<MarksFA> iterable = Arrays.asList(marksFAArray);
+			Iterable<MarksFA> iterable = Arrays.asList(marksFAArray);
 		 List<MarksFA> results = examService.saveExamStudentsFAMarks(iterable);
 		
 		return results;

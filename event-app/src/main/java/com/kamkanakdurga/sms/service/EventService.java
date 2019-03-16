@@ -1,5 +1,6 @@
 package com.kamkanakdurga.sms.service;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.kamkanakdurga.sms.event.dto.HolidayDTO;
+import com.kamkanakdurga.sms.event.dto.NoticeDTO;
 import com.kamkanakdurga.sms.event.repository.EventCategoryRepository;
 import com.kamkanakdurga.sms.event.repository.EventRepository;
 import com.kamkanakdurga.sms.event.repository.HolidayRepository;
+import com.kamkanakdurga.sms.event.repository.NoticeRepository;
 import com.kamkanakdurga.sms.library.entities.Event;
 import com.kamkanakdurga.sms.library.entities.EventAttachment;
 import com.kamkanakdurga.sms.library.entities.EventCategory;
@@ -28,6 +31,9 @@ public class EventService {
 	
 	@Autowired
 	private EventCategoryRepository eventCategoryRepository;
+	
+	@Autowired
+	private NoticeRepository noticeRepository;
 	
 	@SuppressWarnings("deprecation")
 	public Page<HolidayDTO> findAllHolidayRecords(int page, int records) {
@@ -95,4 +101,17 @@ public class EventService {
 		List<Event> result = eventRepository.findAllEventRecords(offset,limit);
 		return result;
 	}	
+	
+	@SuppressWarnings("deprecation")
+	public Page<NoticeDTO> findAllNoticeRecords(BigInteger schoolCode, int page, int records) {
+		if (page <= 1) {
+			page = 0;
+		} else {
+			page--;
+		}
+		if (records <= 0) {
+			records = 25;
+		}
+		return noticeRepository.findAllNoticeRecords(schoolCode, new PageRequest(page,records));
+	}
 }

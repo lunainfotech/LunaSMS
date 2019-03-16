@@ -1,19 +1,21 @@
 package com.kamkanakdurga.sms.exam.dto;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel
 public class TermFADTO {
 	
-	@ApiModelProperty(position = 0)
+	@ApiModelProperty(position = 1)
 	private TermInfoDTO T1;
 	
-	@ApiModelProperty(position = 1)
+	@ApiModelProperty(position = 2)
 	private TermInfoDTO T2;
 	
-	@ApiModelProperty(position = 2)
+	@ApiModelProperty(position = 3)
 	private TermInfoDTO T3;
 	
-	@ApiModelProperty(position = 3)
+	@ApiModelProperty(position = 4)
 	private TermInfoDTO T4;
 
 	public TermFADTO(TermInfoDTO t1, TermInfoDTO t2, TermInfoDTO t3, TermInfoDTO t4) {
