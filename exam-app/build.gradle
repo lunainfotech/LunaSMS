@@ -14,7 +14,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-    baseName = 'APSMS-Examt-app'
+    baseName = 'APSMS-Exam-app'
     version =  '0.1.0'
 }
 sourceCompatibility = 1.8
