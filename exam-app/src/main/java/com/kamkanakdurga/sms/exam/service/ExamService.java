@@ -96,32 +96,42 @@ public class ExamService {
 		List<DisplayFADTO> results = new ArrayList<DisplayFADTO>();
 		List<StudentDTO> students = studentRepository.getStudentByClass(schoolCode, classId);
 		List<ExamStudentsFADTO> marksFas = marksFARepository.getExamStudentsFA(schoolCode, examId, classId, subjectId);
-		
+		boolean studentExists = false;
+		ExamStudentsFADTO marksFaTemp = null;
 		for(StudentDTO student : students) {
+			
 			for(ExamStudentsFADTO marksFa : marksFas) {
 				if(student.getStudentCode().equals(marksFa.getStudentCode())) {
-					
-					TermInfoDTO termOne 	= new TermInfoDTO(
-								marksFa.getTermOne(), 
-								marksFa.getTermOneAttendance(),
+					studentExists = true;
+					marksFaTemp = marksFa;
+					break;
+				} else {
+					studentExists = false;
+				}
+			}
+			
+			if(studentExists) {
+					TermInfoDTO termOne = new TermInfoDTO(
+							marksFaTemp.getTermOne(), 
+							marksFaTemp.getTermOneAttendance(),
 								10
 							);
 					
 					TermInfoDTO termTwo	= new TermInfoDTO(
-								marksFa.getTermTwo(), 
-								marksFa.getTermTwoAttendance(), 
+							marksFaTemp.getTermTwo(), 
+							marksFaTemp.getTermTwoAttendance(), 
 								10
 							);
 					
 					TermInfoDTO termThree  = new TermInfoDTO(
-								marksFa.getTermThree(), 
-								marksFa.getTermThreeAttendance(), 
+							marksFaTemp.getTermThree(), 
+							marksFaTemp.getTermThreeAttendance(), 
 								10
 							);
 					
-					TermInfoDTO termFour	= new TermInfoDTO(
-								marksFa.getTermFour(), 
-								marksFa.getTermFourAttendance(),
+					TermInfoDTO termFour = new TermInfoDTO(
+							marksFaTemp.getTermFour(), 
+							marksFaTemp.getTermFourAttendance(),
 								20
 							);
 					
@@ -133,21 +143,21 @@ public class ExamService {
 							);
 					
 					DisplayFADTO examStudentsFADTO = new DisplayFADTO(
-							marksFa.getId(),
+							marksFaTemp.getId(),
 							student.getSchoolCode(), 
 							student.getStudentCode(), 
 							student.getStudentRoll(),
 							student.getStudentFirstName(), 
 							student.getStudentLastName(), 
-							marksFa.getExam(), 
-							marksFa.getSubject(), 
+							marksFaTemp.getExam(), 
+							marksFaTemp.getSubject(), 
 							termFA
 							);
 					results.add(examStudentsFADTO);
 				}
 				else {
 					
-					TermInfoDTO termOne 	= new TermInfoDTO(
+					TermInfoDTO termOne = new TermInfoDTO(
 							-1, 
 							1,
 							10
@@ -159,13 +169,13 @@ public class ExamService {
 							10
 						);
 					
-					TermInfoDTO termThree  = new TermInfoDTO(
+					TermInfoDTO termThree = new TermInfoDTO(
 							-1, 
 							1, 
 							10
 						);
 					
-					TermInfoDTO termFour	= new TermInfoDTO(
+					TermInfoDTO termFour = new TermInfoDTO(
 							-1, 
 							1,
 							20
@@ -185,13 +195,12 @@ public class ExamService {
 							student.getStudentRoll(),
 							student.getStudentFirstName(), 
 							student.getStudentLastName(), 
-							marksFa.getExam(), 
-							marksFa.getSubject(), 
+							examId, 
+							subjectId, 
 							termFA
 						);
 					results.add(examStudentsFADTO);
 				}
-			}
 			if(marksFas.size()==0) {
 				TermInfoDTO termOne 	= new TermInfoDTO(
 						-1, 
@@ -247,15 +256,24 @@ public class ExamService {
 		int saTerm = subjectElement.get().getSaTerm();
 		List<StudentDTO> students = studentRepository.getStudentByClass(schoolCode, classId);
 		List<ExamStudentsSADTO> marksSas = null;
-		
+		boolean studentExists = false;
+		ExamStudentsSADTO marksSaTemp = null;
 		if(saTerm == 1) {
 			marksSas = marksSARepository.getExamStudentsSA_1(schoolCode, examId, classId, subjectId);
 			for(StudentDTO student : students) {
 				for(ExamStudentsSADTO marksSa : marksSas) {
+					marksSaTemp = marksSa;
 					if(student.getStudentCode().equals(marksSa.getStudentCode())) {
+						studentExists = true;
+						break;
+					} else {
+						studentExists = false;
+					}
+				}
+				if(studentExists) {
 						TermInfoDTO termOne 	= new TermInfoDTO(
-								marksSa.getTermOne(), 
-								marksSa.getTermOneAttendance(),
+								marksSaTemp.getTermOne(), 
+								marksSaTemp.getTermOneAttendance(),
 								50
 							);
 						
@@ -264,14 +282,14 @@ public class ExamService {
 								);
 						
 						DisplayTermOneSADTO examStudentsSADTO = new DisplayTermOneSADTO(
-								marksSa.getId(),
+								marksSaTemp.getId(),
 								student.getSchoolCode(), 
 								student.getStudentCode(), 
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								marksSaTemp.getExam(), 
+								marksSaTemp.getSubject(), 
 								termSA
 								);
 						results.add(examStudentsSADTO);
@@ -295,13 +313,12 @@ public class ExamService {
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								examId, 
+								subjectId, 
 								termSA
 								);
 						results.add(examStudentsSADTO);
 					}
-				}
 				if(marksSas.size()==0) {
 					
 					TermInfoDTO termOne 	= new TermInfoDTO(
@@ -329,26 +346,36 @@ public class ExamService {
 				}
 			}
 		} else if(saTerm == 3){
+			studentExists = false;
+			marksSaTemp = null;
 			marksSas = marksSARepository.getExamStudentsSA_3(schoolCode, examId, classId, subjectId);
 			for(StudentDTO student : students) {
 				for(ExamStudentsSADTO marksSa : marksSas) {
+					marksSaTemp = marksSa;
 					if(student.getStudentCode().equals(marksSa.getStudentCode())) {
+						studentExists = true;
+						break;
+					} else {
+						studentExists = false;
+					}
+				}
+				if(studentExists) {
 						
 						TermInfoDTO termOne 	= new TermInfoDTO(
-								marksSa.getTermOne(), 
-								marksSa.getTermOneAttendance(),
+								marksSaTemp.getTermOne(), 
+								marksSaTemp.getTermOneAttendance(),
 								20
 							);
 						
 						TermInfoDTO termTwo 	= new TermInfoDTO(
-								marksSa.getTermTwo(), 
-								marksSa.getTermTwoAttendance(),
+								marksSaTemp.getTermTwo(), 
+								marksSaTemp.getTermTwoAttendance(),
 								20
 							);
 						
 						TermInfoDTO termThree 	= new TermInfoDTO(
-								marksSa.getTermThree(), 
-								marksSa.getTermThreeAttendance(),
+								marksSaTemp.getTermThree(), 
+								marksSaTemp.getTermThreeAttendance(),
 								30
 							);
 						
@@ -360,14 +387,14 @@ public class ExamService {
 						
 						
 						DisplayTermThreeSADTO examStudentsSADTO = new DisplayTermThreeSADTO(
-								marksSa.getId(),
+								marksSaTemp.getId(),
 								student.getSchoolCode(), 
 								student.getStudentCode(), 
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								marksSaTemp.getExam(), 
+								marksSaTemp.getSubject(), 
 								termSA
 								);
 						results.add(examStudentsSADTO);
@@ -405,12 +432,11 @@ public class ExamService {
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								examId, 
+								subjectId, 
 								termSA
 								);
 						results.add(examStudentsSADTO);
-					}
 				}
 				if(marksSas.size()==0) {
 					
@@ -453,38 +479,48 @@ public class ExamService {
 				}
 			}
 		} else if(saTerm == 5){
+			studentExists = false;
+			marksSaTemp = null;
 			marksSas = marksSARepository.getExamStudentsSA_5(schoolCode, examId, classId, subjectId);
 			for(StudentDTO student : students) {
 				for(ExamStudentsSADTO marksSa : marksSas) {
+					marksSaTemp = marksSa;
 					if(student.getStudentCode().equals(marksSa.getStudentCode())) {
+						studentExists = true;
+						break;
+					} else {
+						studentExists = false;
+					}
+				}
+				if(studentExists) {
 
 						TermInfoDTO termOne 	= new TermInfoDTO(
-								marksSa.getTermOne(), 
-								marksSa.getTermOneAttendance(),
+								marksSaTemp.getTermOne(), 
+								marksSaTemp.getTermOneAttendance(),
 								32
 							);
 						
 						TermInfoDTO termTwo 	= new TermInfoDTO(
-								marksSa.getTermTwo(), 
-								marksSa.getTermTwoAttendance(),
+								marksSaTemp.getTermTwo(), 
+								marksSaTemp.getTermTwoAttendance(),
 								16
 							);
 						
 						TermInfoDTO termThree 	= new TermInfoDTO(
-								marksSa.getTermThree(), 
-								marksSa.getTermThreeAttendance(),
+								marksSaTemp.getTermThree(), 
+								marksSaTemp.getTermThreeAttendance(),
 								8
 							);
 
 						TermInfoDTO termFour 	= new TermInfoDTO(
-								marksSa.getTermFour(), 
-								marksSa.getTermFourAttendance(),
+								marksSaTemp.getTermFour(), 
+								marksSaTemp.getTermFourAttendance(),
 								12
 							);
 						
 						TermInfoDTO termFive 	= new TermInfoDTO(
-								marksSa.getTermFour(), 
-								marksSa.getTermFourAttendance(),
+								marksSaTemp.getTermFour(), 
+								marksSaTemp.getTermFourAttendance(),
 								12
 							);
 						
@@ -497,14 +533,14 @@ public class ExamService {
 								);
 						
 						DisplayTermFiveSADTO examStudentsSADTO = new DisplayTermFiveSADTO(
-								marksSa.getId(),
+								marksSaTemp.getId(),
 								student.getSchoolCode(), 
 								student.getStudentCode(), 
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(),
+								marksSaTemp.getExam(), 
+								marksSaTemp.getSubject(),
 								termSA
 								);
 						results.add(examStudentsSADTO);
@@ -556,12 +592,11 @@ public class ExamService {
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								examId, 
+								subjectId, 
 								termSA
 								);
 						results.add(examStudentsSADTO);
-					}
 				}
 				if(marksSas.size()==0) {
 					
@@ -618,44 +653,54 @@ public class ExamService {
 				}
 			}
 		} else if(saTerm == 6){
+			studentExists = false;
+			marksSaTemp = null;
 			marksSas = marksSARepository.getExamStudentsSA_6(schoolCode, examId, classId, subjectId);
 			for(StudentDTO student : students) {
 				for(ExamStudentsSADTO marksSa : marksSas) {
+					marksSaTemp = marksSa;
 					if(student.getStudentCode().equals(marksSa.getStudentCode())) {
+						studentExists = true;
+						break;
+					} else {
+						studentExists = false;
+					}
+				}
+				if(studentExists) {
 						
 						TermInfoDTO termOne 	= new TermInfoDTO(
-								marksSa.getTermOne(), 
-								marksSa.getTermOneAttendance(),
+								marksSaTemp.getTermOne(), 
+								marksSaTemp.getTermOneAttendance(),
 								32
 							);
 						
 						TermInfoDTO termTwo 	= new TermInfoDTO(
-								marksSa.getTermTwo(), 
-								marksSa.getTermTwoAttendance(),
+								marksSaTemp.getTermTwo(), 
+								marksSaTemp.getTermTwoAttendance(),
 								8
 							);
 						
 						TermInfoDTO termThree 	= new TermInfoDTO(
-								marksSa.getTermThree(), 
-								marksSa.getTermThreeAttendance(),
+								marksSaTemp.getTermThree(), 
+								marksSaTemp.getTermThreeAttendance(),
 								12
 							);
 
 						TermInfoDTO termFour 	= new TermInfoDTO(
-								marksSa.getTermFour(), 
-								marksSa.getTermFourAttendance(),
+								marksSaTemp.getTermFour(), 
+								marksSaTemp.getTermFourAttendance(),
 								8
 							);
 						
 						TermInfoDTO termFive 	= new TermInfoDTO(
-								marksSa.getTermFive(), 
-								marksSa.getTermFiveAttendance(),
+								marksSaTemp.getTermFive(), 
+								marksSaTemp.getTermFiveAttendance(),
 								12
 							);
 						
 						TermInfoDTO termSix 		= new TermInfoDTO(
-								marksSa.getTermSix(), 
-								marksSa.getTermSixAttendance(),
+								marksSaTemp.getTermSix(), 
+								marksSaTemp.getTermSixAttendance(),
 								8
 							);					
 						
@@ -669,14 +714,14 @@ public class ExamService {
 								);
 						
 						DisplayTermSixSADTO examStudentsSADTO = new DisplayTermSixSADTO(
-								marksSa.getId(),
+								marksSaTemp.getId(),
 								student.getSchoolCode(), 
 								student.getStudentCode(), 
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								marksSaTemp.getExam(), 
+								marksSaTemp.getSubject(), 
 								termSA
 								);
 						results.add(examStudentsSADTO);
@@ -736,12 +781,11 @@ public class ExamService {
 								student.getStudentRoll(),
 								student.getStudentFirstName(), 
 								student.getStudentLastName(), 
-								marksSa.getExam(), 
-								marksSa.getSubject(), 
+								examId, 
+								subjectId, 
 								termSA
 								);
 						results.add(examStudentsSADTO);
-					}
 				}
 				
 				if(marksSas.size()==0) {
@@ -819,158 +863,4 @@ public class ExamService {
 		List<MarksSA> result = marksSARepository.saveAll(marksSAArray);
 		return result;
 	}
-	
-	public List<DisplayFADTO> getExamStudentsFA1(BigInteger schoolCode, int examId, int classId, int subjectId) {
-		List<DisplayFADTO> results = new ArrayList<DisplayFADTO>();
-		List<StudentDTO> students = studentRepository.getStudentByClass(schoolCode, classId);
-		List<ExamStudentsFADTO> marksFas = marksFARepository.getExamStudentsFA(schoolCode, examId, classId, subjectId);
-		
-		for(StudentDTO student : students) {
-			
-			for(ExamStudentsFADTO marksFa : marksFas) {
-				if(student.getStudentCode().equals(marksFa.getStudentCode())) {
-					
-					TermInfoDTO termOne 	= new TermInfoDTO(
-								marksFa.getTermOne(), 
-								marksFa.getTermOneAttendance(),
-								10
-							);
-					
-					TermInfoDTO termTwo	= new TermInfoDTO(
-								marksFa.getTermTwo(), 
-								marksFa.getTermTwoAttendance(), 
-								10
-							);
-					
-					TermInfoDTO termThree  = new TermInfoDTO(
-								marksFa.getTermThree(), 
-								marksFa.getTermThreeAttendance(), 
-								10
-							);
-					
-					TermInfoDTO termFour	= new TermInfoDTO(
-								marksFa.getTermFour(), 
-								marksFa.getTermFourAttendance(),
-								20
-							);
-					
-					TermFADTO termFA = new TermFADTO(
-								termOne,
-								termTwo,
-								termThree,
-								termFour
-							);
-					
-					DisplayFADTO examStudentsFADTO = new DisplayFADTO(
-							marksFa.getId(),
-							student.getSchoolCode(), 
-							student.getStudentCode(), 
-							student.getStudentRoll(),
-							student.getStudentFirstName(), 
-							student.getStudentLastName(), 
-							marksFa.getExam(), 
-							marksFa.getSubject(), 
-							termFA
-							);
-					results.add(examStudentsFADTO);
-					
-					break;
-				}
-				else {
-					
-					TermInfoDTO termOne 	= new TermInfoDTO(
-							-1, 
-							1,
-							10
-						);
-				
-					TermInfoDTO termTwo	= new TermInfoDTO(
-							-1, 
-							1, 
-							10
-						);
-					
-					TermInfoDTO termThree  = new TermInfoDTO(
-							-1, 
-							1, 
-							10
-						);
-					
-					TermInfoDTO termFour	= new TermInfoDTO(
-							-1, 
-							1,
-							20
-						);					
-					
-					TermFADTO termFA = new TermFADTO(
-							termOne,
-							termTwo,
-							termThree,
-							termFour
-						);
-					
-					DisplayFADTO examStudentsFADTO = new DisplayFADTO(
-							BigInteger.valueOf(0),
-							student.getSchoolCode(), 
-							student.getStudentCode(), 
-							student.getStudentRoll(),
-							student.getStudentFirstName(), 
-							student.getStudentLastName(), 
-							marksFa.getExam(), 
-							marksFa.getSubject(), 
-							termFA
-						);
-					results.add(examStudentsFADTO);
-					break;
-				}
-			}
-			if(marksFas.size()==0) {
-				TermInfoDTO termOne 	= new TermInfoDTO(
-						-1, 
-						1,
-						10
-					);
-			
-				TermInfoDTO termTwo	= new TermInfoDTO(
-						-1, 
-						1, 
-						10
-					);
-				
-				TermInfoDTO termThree  = new TermInfoDTO(
-						-1, 
-						1, 
-						10
-					);
-				
-				TermInfoDTO termFour	= new TermInfoDTO(
-						-1, 
-						1,
-						20
-					);					
-				
-				TermFADTO termFA = new TermFADTO(
-						termOne,
-						termTwo,
-						termThree,
-						termFour
-					);
-				
-				DisplayFADTO examStudentsFADTO = new DisplayFADTO(
-						BigInteger.valueOf(0),
-						student.getSchoolCode(), 
-						student.getStudentCode(), 
-						student.getStudentRoll(),
-						student.getStudentFirstName(), 
-						student.getStudentLastName(), 
-						examId, 
-						subjectId, 
-						termFA
-						);
-				results.add(examStudentsFADTO);
-			}
-		}
-		return results;
-	}
-
 }

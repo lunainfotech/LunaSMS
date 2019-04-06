@@ -150,7 +150,7 @@ public class ExamController {
 	public List getExamAllStudents(@RequestParam("school_code") BigInteger schoolCode, @RequestParam("exam_id") int examId, @RequestParam("class_id") int classId, @RequestParam("subject_id") int subjectId) {
 		List results = null;
 		if(examId <= 4) {
-			results = examService.getExamStudentsFA1(schoolCode, examId, classId, subjectId);
+			results = examService.getExamStudentsFA(schoolCode, examId, classId, subjectId);
 		}
 		else {
 			results = examService.getExamStudentsSA(schoolCode, examId, classId, subjectId);
