@@ -1,4 +1,4 @@
-package com.kamkanakdurga.sms.cdn.security;
+package com.kamkanakdurga.sms.assignment.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -37,17 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// No session will be created or used by spring security
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-		http.authorizeRequests().antMatchers("/upload/**")
-		.permitAll().antMatchers("/Assignment/**")
-		.permitAll().antMatchers("/Event/**")
-		.permitAll().antMatchers("/downloadFile/**")
-		.permitAll().antMatchers("/uploadFile/**")
-		.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/users/signin/*")
-		.failureUrl("/users/signin?error").permitAll().and().logout()
-		.logoutRequestMatcher(new AntPathRequestMatcher("/users/logout")).logoutSuccessUrl("/users/signin");
+		// Entry points
+		http.authorizeRequests()
+	       .antMatchers("/assignment/heartbeat").permitAll()
+	        .antMatchers("/assignment/**").permitAll()
+			.anyRequest().authenticated();
 
 		// If a user try to access a resource without having enough permissions
-		// http.exceptionHandling().accessDeniedPage("/users/signin");
+		http.exceptionHandling().accessDeniedPage("/users/signin");
 
 		// Apply JWT
 		http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));

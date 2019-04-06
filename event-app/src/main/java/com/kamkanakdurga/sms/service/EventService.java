@@ -2,15 +2,16 @@ package com.kamkanakdurga.sms.service;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.kamkanakdurga.sms.event.dto.EventDTO;
 import com.kamkanakdurga.sms.event.dto.HolidayDTO;
 import com.kamkanakdurga.sms.event.dto.NoticeDTO;
+import com.kamkanakdurga.sms.event.repository.EventAttachmentRepository;
 import com.kamkanakdurga.sms.event.repository.EventCategoryRepository;
 import com.kamkanakdurga.sms.event.repository.EventRepository;
 import com.kamkanakdurga.sms.event.repository.HolidayRepository;
@@ -19,6 +20,7 @@ import com.kamkanakdurga.sms.library.entities.Event;
 import com.kamkanakdurga.sms.library.entities.EventAttachment;
 import com.kamkanakdurga.sms.library.entities.EventCategory;
 import com.kamkanakdurga.sms.library.entities.Holiday;
+import com.kamkanakdurga.sms.library.entities.Notice;
 
 
 @Service
@@ -28,6 +30,9 @@ public class EventService {
 	
 	@Autowired
 	private EventRepository eventRepository;
+	
+	@Autowired
+	private EventAttachmentRepository eventAttachmentRepository;
 	
 	@Autowired
 	private EventCategoryRepository eventCategoryRepository;
@@ -82,7 +87,7 @@ public class EventService {
 		Event result = eventRepository.save(eventInfo);
 		return result;
 	}
-	
+	/*
 	public List<Event> getllEventRecords(int page, int limit) {
 		int offset;
 		
@@ -101,6 +106,42 @@ public class EventService {
 		List<Event> result = eventRepository.findAllEventRecords(offset,limit);
 		return result;
 	}	
+*/
+	@SuppressWarnings("deprecation")
+	public Page<Event> findAllEventRecords(BigInteger schoolCode, int page, int records) {
+		if (page <= 1) {
+			page = 0;
+		} else {
+			page--;
+		}
+		if (records <= 0) {
+			records = 25;
+		}
+		return eventRepository.findAllEventRecords(schoolCode, new PageRequest(page,records));
+	}	
+
+	public EventDTO getEventById(BigInteger eventId) {
+		
+		Event event = eventRepository.findById(eventId);
+		List<EventAttachment> attachment = eventAttachmentRepository.findByEventId(eventId);
+		
+		EventDTO eventList = new EventDTO(
+				event.getId(),
+				event.getSchoolCode(),
+				event.getEventTitle(),
+				event.getEventContent(),
+				event.getEventCategory(),
+				event.getEventStatus(),
+				event.getEventDate(),
+				attachment
+				);
+	
+		return eventList;
+	}
+	
+	public void deleteEventRecord(BigInteger eventId) {
+		eventRepository.deleteById(eventId);
+	}
 	
 	@SuppressWarnings("deprecation")
 	public Page<NoticeDTO> findAllNoticeRecords(BigInteger schoolCode, int page, int records) {
@@ -113,5 +154,15 @@ public class EventService {
 			records = 25;
 		}
 		return noticeRepository.findAllNoticeRecords(schoolCode, new PageRequest(page,records));
+	}
+	
+	public Notice saveNotice(Notice noticeInfo) {
+
+		Notice result = noticeRepository.save(noticeInfo);
+		return result;
+	}
+	
+	public void deleteNoticeRecord(BigInteger noticeId) {
+		noticeRepository.deleteById(noticeId);
 	}
 }

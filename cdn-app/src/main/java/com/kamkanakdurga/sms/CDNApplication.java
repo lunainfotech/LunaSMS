@@ -10,9 +10,9 @@ import com.kamkanakdurga.sms.cdn.property.FileStorageProperties;
 @EnableConfigurationProperties({
 		FileStorageProperties.class
 })
-public class FileDemoApplication {
+public class CDNApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FileDemoApplication.class, args);
+		SpringApplication.run(CDNApplication.class, args);
 	}
 }
